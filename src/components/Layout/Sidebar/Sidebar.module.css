@@ -1,0 +1,44 @@
+.sidebar {
+    grid-area: sidebar;
+
+    padding: 20px 10px;
+    border-radius: 10px;
+
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.1);
+}
+
+.menu {
+
+}
+
+.menu__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu__item {
+
+}
+
+.menu__link {
+    color: #222222;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.menu__icon {
+    width: 25px;
+}
+
+.menu__link:hover {
+    color: #0085ff;
+}
+
+.horizontal_line {
+    margin: 10px 0;
+    height: 1px;
+    background-color: #e6e6e6;
+}

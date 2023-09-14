@@ -1,0 +1,79 @@
+.myPosts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.myPosts__form {
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.myPosts__textArea {
+    background-color: #f3f3f3;
+    padding: 10px 15px;
+    outline: none;
+    border-radius: 10px;
+    resize: none;
+    flex-basis: 90%;
+}
+
+.myPosts__textArea:focus {
+    border: 1px solid #0085ff;
+}
+
+.myPosts__textArea::placeholder {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.49);
+}
+
+.myPosts__textArea::-webkit-scrollbar {
+    width: 10px;
+}
+
+.myPosts__textArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+}
+
+.myPosts__textArea::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #0085ff;
+}
+
+.myPosts__addPost {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.myPosts__addPost:hover {
+    color: #0085ff;
+}
+
+.myPosts__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.myPosts__fill {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 20px;
+}
+
+.myPosts__icon {
+    width: 25px;
+}
+
+.myPosts__text {
+    font-weight: bold;
+}
