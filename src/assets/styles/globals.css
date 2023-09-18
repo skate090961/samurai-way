@@ -3,7 +3,7 @@
 body {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.4;
     color: #222222;
 
@@ -18,10 +18,10 @@ body {
     "sidebar main main";
 
     grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 7fr;
-    grid-gap: 20px;
+    grid-template-columns: 2fr 9fr;
+    grid-gap: 15px;
 
-    max-width: 1220px;
+    max-width: 1200px;
     padding: 20px;
     margin: 0 auto;
 }

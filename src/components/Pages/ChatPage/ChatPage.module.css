@@ -1,0 +1,7 @@
+.chat__page {
+    display: grid;
+    grid-template-areas:
+    'dialogs messages';
+    grid-template-columns: 30% 70%;
+    gap: 2px;
+}

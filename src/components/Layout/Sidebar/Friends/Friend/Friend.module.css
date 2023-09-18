@@ -1,0 +1,20 @@
+.friends__item {
+
+}
+
+.friends__link {
+    display: flex;
+    align-items: center;
+    color: #222222;
+    gap: 5px;
+}
+
+.friends__avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+
+.friends__name:hover {
+    color: #0085ff;
+}
