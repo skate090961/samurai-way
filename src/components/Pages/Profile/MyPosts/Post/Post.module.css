@@ -4,7 +4,7 @@
     align-items: flex-start;
     gap: 20px;
 
-    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -30,7 +30,7 @@
     padding-bottom: 20px;
 }
 
-.post__button {
+.post__like {
     display: flex;
     align-items: center;
     font-weight: bold;

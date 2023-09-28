@@ -1,14 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './assets/styles/globals.css'
 import './assets/styles/reset.css'
-import App from './App';
+import store from "./state/state";
+import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
-import state from "./state/state";
+import App from "./App";
 
-ReactDOM.render(
-    <BrowserRouter>
-        <App state={state}/>
-    </BrowserRouter>,
-  document.getElementById('root')
-);
+export const rerenderEntireTree = () => {
+    ReactDOM.render(
+        <BrowserRouter>
+            <App store={store}/>
+        </BrowserRouter>,
+        document.getElementById('root')
+    );
+}
+rerenderEntireTree()
+
+store.subscriber(rerenderEntireTree)

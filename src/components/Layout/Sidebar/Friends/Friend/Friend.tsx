@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Friend.module.css'
 import {NavLink} from "react-router-dom";
-import {FriendsType} from "../../../../../state/state";
 
 type IsActiveType = {
     [key: string]: boolean

@@ -25,7 +25,7 @@ const Post: React.FC<PostPropsType> = ({
                     <span className={s.post__span}>Likes: {likesCount}</span>
                 </div>
             </div>
-            <button className={s.post__button}>
+            <button className={s.post__like}>
                 <img className={s.post_icon} src="https://www.svgrepo.com/show/522408/heart.svg" alt="button_like"/>
                 Like
             </button>

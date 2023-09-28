@@ -6,15 +6,24 @@ import {ProfilePageType} from "../../../state/state";
 
 type ProfilePropsType = {
     profileData: ProfilePageType
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 
 const Profile: React.FC<ProfilePropsType> = ({
-                                                 profileData
+                                                 profileData,
+                                                 addPost,
+                                                 updateNewPostText
                                              }) => {
     return (
         <main className={s.main}>
             <MyProfile/>
-            <MyPosts postsData={profileData.posts}/>
+            <MyPosts
+                postsData={profileData.posts}
+                newPostText={profileData.newPostText}
+                addPost={addPost}
+                updateNewPostText={updateNewPostText}
+            />
         </main>
     );
 };
