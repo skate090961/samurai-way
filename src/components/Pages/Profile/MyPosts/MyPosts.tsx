@@ -1,26 +1,24 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostsType} from "../../../../state/state";
+import {ActionsTypes, addPostAC, PostsType, updateNewPostTextAC} from "../../../../state/state";
 
 type MyPostsPropsType = {
     postsData: PostsType[]
     newPostText: string
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = ({
                                                  postsData,
-                                                 addPost,
-                                                 updateNewPostText,
-                                                 newPostText
+                                                 newPostText,
+                                                 dispatch
                                              }) => {
     const addPostHandler = () => {
-        addPost()
+        dispatch(addPostAC())
     }
     const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        updateNewPostText(e.currentTarget.value)
+        dispatch(updateNewPostTextAC(e.currentTarget.value))
     }
     const postsList = postsData.map(mp =>
         <Post

@@ -16,6 +16,7 @@ const App: React.FC<AppPropsType> = ({
                                          store
                                      }) => {
     const state = store.getState()
+    const dispatch = store.dispatch.bind(store)
     const PATH = {
         ROOT: '/',
         PROFILE: 'profile',
@@ -27,11 +28,12 @@ const App: React.FC<AppPropsType> = ({
     return (
         <Routes>
             <Route path={PATH.ROOT} element={<Layout sidebarData={state.sidebar}/>}>
-                <Route index element={<Profile profileData={state.profilePage} addPost={store.addPost.bind(store)}
-                                               updateNewPostText={store.updateNewPostText.bind(store)}/>}></Route>
+                <Route index
+                       element={<Profile profileData={state.profilePage} dispatch={dispatch}
+                       />}></Route>
                 <Route path={PATH.PROFILE}
-                       element={<Profile profileData={state.profilePage} addPost={store.addPost.bind(store)}
-                                         updateNewPostText={store.updateNewPostText.bind(store)}/>}></Route>
+                       element={<Profile profileData={state.profilePage} dispatch={dispatch}
+                       />}></Route>
                 <Route path={PATH.DIALOGS} element={<ChatPage chatData={state.chatPage}/>}></Route>
                 <Route path={PATH.NEWS} element={<News/>}></Route>
                 <Route path={PATH.MUSIC} element={<Music/>}></Route>
