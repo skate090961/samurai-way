@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Friends.module.css'
-import {FriendsType} from "../../../../state/state";
+import {FriendsType} from "../../../../store/store";
 import Friend from "./Friend/Friend";
 
 type FriendsPropsType = {

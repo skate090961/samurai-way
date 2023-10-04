@@ -3,21 +3,24 @@ import s from "./Messages.module.css";
 import MessageSender from "../MessageSender/MessageSender";
 import FriendMessage from './Message/FriendMessage/FriendMessage';
 import MyMessage from "./Message/MyMessage/MyMessage";
-import {MessagesType} from "../../../../state/state";
+import {ChatPageType} from "../../../../store/store";
 
 
 type MessagesPropsType = {
-    messagesData: MessagesType[]
+    chatData: ChatPageType
+    dispatch: (action: any) => void
 }
 
 const Messages: React.FC<MessagesPropsType> = ({
-                                                   messagesData
+                                                   chatData,
+                                                   dispatch
                                                }) => {
-    const friendsMessagesList = messagesData.map(f =>
-        <FriendMessage
-            key={f.id}
-            id={f.id}
-            message={f.message}
+    const myMessagesList = chatData.messages.map(m =>
+        <MyMessage
+            key={m.id}
+            id={m.id}
+            message={m.message}
+            time={m.time}
         />
     )
 
@@ -35,10 +38,10 @@ const Messages: React.FC<MessagesPropsType> = ({
             </div>
             <div className={s.messages__main}>
                 <ul className={s.messages__list}>
-                    {friendsMessagesList}
-                    <MyMessage/>
+                    <FriendMessage/>
+                    {myMessagesList}
                 </ul>
-                <MessageSender/>
+                <MessageSender newMessageText={chatData.newMessageText} dispatch={dispatch}/>
             </div>
         </div>
     );

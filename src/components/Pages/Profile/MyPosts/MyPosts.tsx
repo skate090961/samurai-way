@@ -1,12 +1,13 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionsTypes, addPostAC, PostsType, updateNewPostTextAC} from "../../../../state/state";
+import {PostsType} from "../../../../store/store";
+import {addPostCreator, updateNewPostTextCreator} from "../../../../store/reducers/profile-reducer/profile-reducer";
 
 type MyPostsPropsType = {
     postsData: PostsType[]
     newPostText: string
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: any) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = ({
@@ -15,10 +16,10 @@ const MyPosts: React.FC<MyPostsPropsType> = ({
                                                  dispatch
                                              }) => {
     const addPostHandler = () => {
-        dispatch(addPostAC())
+        dispatch(addPostCreator())
     }
     const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNewPostTextAC(e.currentTarget.value))
+        dispatch(updateNewPostTextCreator(e.currentTarget.value))
     }
     const postsList = postsData.map(mp =>
         <Post
@@ -26,6 +27,7 @@ const MyPosts: React.FC<MyPostsPropsType> = ({
             id={mp.id}
             message={mp.text}
             likesCount={mp.likesCount}
+            date={mp.date}
         />
     )
 
@@ -39,7 +41,7 @@ const MyPosts: React.FC<MyPostsPropsType> = ({
                     <textarea
                         className={s.myPosts__textArea}
                         placeholder={'Write something...'}
-                        rows={5}
+                        rows={3}
                         value={newPostText}
                         onChange={onPostChangeHandler}
                     />

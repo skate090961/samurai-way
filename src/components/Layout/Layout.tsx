@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
-import {Outlet} from "react-router-dom";
-import {SidebarType} from "../../state/state";
+import {SidebarType} from "../../store/store";
 
 type LayoutPropsType = {
     sidebarData: SidebarType
+    children: ReactNode
 }
 
 const Layout: React.FC<LayoutPropsType> = ({
-                                               sidebarData
+                                               sidebarData,
+                                               children
                                            }) => {
     return (
         <div className={'app'}>
             <Header/>
             <Sidebar sidebarData={sidebarData}/>
             <div className={'app__content'}>
-               <Outlet/>
+                {/*pages*/}
+                {children}
             </div>
         </div>
     );

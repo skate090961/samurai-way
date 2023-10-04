@@ -2,15 +2,17 @@ import React from 'react';
 import s from "./FriendMessage.module.css";
 
 type MessagePropsType = {
-    id: string
-    message: string
+    id?: string
+    message?: string
     avatar?: string
+    time?: string
 }
 
 const FriendMessage: React.FC<MessagePropsType> = ({
                                                        id,
                                                        message,
-                                                       avatar
+                                                       avatar,
+                                                       time
                                                    }) => {
     return (
         <li className={s.friendMessage__item}>
@@ -19,9 +21,10 @@ const FriendMessage: React.FC<MessagePropsType> = ({
                  alt="friend_avatar"/>
             <div className={s.friendMessage__message}>
                                 <span className={s.friendMessage__text}>
+                                    {'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod'}
                                     {message}
                                 </span>
-                <span className={s.friendMessage__time}>10:42</span>
+                <span className={s.friendMessage__time}>{time}</span>
             </div>
         </li>
     );

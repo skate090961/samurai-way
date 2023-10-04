@@ -5,12 +5,14 @@ type MyMessagePropsType = {
     id?: string
     message?: string
     avatar?: string
+    time?: string
 }
 
 const MyMessage: React.FC<MyMessagePropsType> = ({
                                                        id,
                                                        message,
-                                                       avatar
+                                                       avatar,
+                                                     time
                                                    }) => {
     return (
         <li className={s.myMessage__item}>
@@ -19,9 +21,9 @@ const MyMessage: React.FC<MyMessagePropsType> = ({
                  alt="friend_avatar"/>
             <div className={s.myMessage__message}>
                                 <span className={s.myMessage__text}>
-                                    Hello! Have you seen my backpack anywhere in office?
+                                    {message}
                                 </span>
-                <span className={s.myMessage__time}>10:42</span>
+                <span className={s.myMessage__time}>{time}</span>
             </div>
         </li>
     );

@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Sidebar.module.css'
-import Menu from "./Menu/Menu";
+import Navbar from "./Navbar/Navbar";
 import Friends from "./Friends/Friends";
-import {SidebarType} from "../../../state/state";
+import {SidebarType} from "../../../store/store";
 
 type SidebarPropsType = {
     sidebarData: SidebarType
@@ -13,7 +13,7 @@ const Sidebar: React.FC<SidebarPropsType> = ({
                                              }) => {
     return (
         <div className={s.sidebar}>
-            <Menu/>
+            <Navbar/>
             <Friends friendsData={sidebarData.friends}/>
         </div>
     );

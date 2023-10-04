@@ -1,7 +1,12 @@
+import {profileReducer} from "./reducers/profile-reducer/profile-reducer";
+import {messageReducer} from "./reducers/message-reducer/message-reducer";
+import {sidebarReducer} from "./reducers/sidebar-reducer/sidebar-reducer";
+
 export type PostsType = {
     id: string
     text: string
     likesCount: number
+    date: string
 }
 export type DialogsType = {
     id: string
@@ -11,6 +16,7 @@ export type DialogsType = {
 export type MessagesType = {
     id: string
     message: string
+    time: string
 }
 export type FriendsType = {
     id: string
@@ -24,6 +30,7 @@ export type ProfilePageType = {
 export type ChatPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
+    newMessageText: string
 }
 export type SidebarType = {
     friends: FriendsType[]
@@ -38,12 +45,8 @@ export type StoreType = {
     _rerenderEntireTree: () => void
     getState: () => StateType
     subscriber: (observer: () => void) => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: any) => void
 }
-
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
 
 const store: StoreType = {
     _state: {
@@ -52,12 +55,14 @@ const store: StoreType = {
                 {
                     id: '1',
                     likesCount: 9,
-                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    date: '1 янв 2023 в 14:56'
                 },
                 {
                     id: '2',
                     likesCount: 14,
-                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.'
+                    text: 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.',
+                    date: '9 янв 2023 в 21:34'
                 },
             ],
             newPostText: ''
@@ -101,11 +106,11 @@ const store: StoreType = {
                 },
             ],
             messages: [
-                {id: '1', message: 'Elvis has left the building'},
-                {id: '2', message: 'Beating around the bush'},
-                {id: '3', message: 'A fool and his money are soon parted'},
-                {id: '4', message: 'If you can`t stand the heat, get out of the kitchen'},
+                {id: '1', message: 'Elvis has left the building', time: '13:23'},
+                {id: '2', message: 'Beating around the bush', time: '13:26'},
+                {id: '3', message: 'A fool and his money are soon parted', time: '15:23'},
             ],
+            newMessageText: ''
         },
         sidebar: {
             friends: [
@@ -136,43 +141,13 @@ const store: StoreType = {
     subscriber(observer: () => void) {
         this._rerenderEntireTree = observer
     },
-    addPost() {
-        this._state.profilePage.posts.push({
-            id: String(new Date().getTime()),
-            likesCount: 0,
-            text: this._state.profilePage.newPostText
-        })
-        this._state.profilePage.newPostText = ''
+    dispatch(action: any) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.chatPage = messageReducer(this._state.chatPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
         this._rerenderEntireTree()
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._rerenderEntireTree()
-    },
-    dispatch(action: ActionsTypes) {
-        switch (action.type) {
-            case 'ADD-POST':
-                this._state.profilePage.posts.push({
-                    id: String(new Date().getTime()),
-                    likesCount: 0,
-                    text: this._state.profilePage.newPostText
-                });
-                this._state.profilePage.newPostText = ''
-                this._rerenderEntireTree()
-                break
-            case 'UPDATE-NEW-POST-TEXT':
-                this._state.profilePage.newPostText = action.newText
-                this._rerenderEntireTree()
-                break
-            default:
-                this._rerenderEntireTree()
-                break
-        }
     }
 }
-
-export const addPostAC = () => ({type: 'ADD-POST'} as const)
-export const updateNewPostTextAC = (newText: string) =>
-    ({type: 'UPDATE-NEW-POST-TEXT', newText} as const)
 
 export default store

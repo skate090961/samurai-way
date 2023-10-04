@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "./MenuItem.module.css";
+import s from "./NavbarItem.module.css";
 import {NavLink} from "react-router-dom";
 
 type IsActiveType = {
@@ -12,7 +12,7 @@ type MenuItemPropsType = {
     title: string
 }
 
-const MenuItem: React.FC<MenuItemPropsType> = ({
+const NavbarItem: React.FC<MenuItemPropsType> = ({
                                                    pathTo,
                                                    src,
                                                    title
@@ -30,4 +30,4 @@ const MenuItem: React.FC<MenuItemPropsType> = ({
     );
 };
 
-export default MenuItem;
+export default NavbarItem;
