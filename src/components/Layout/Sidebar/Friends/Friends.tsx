@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Friends.module.css'
-import {FriendsType} from "../../../../store/store";
 import Friend from "./Friend/Friend";
+import {FriendsType} from "../../../../store/reducers/sidebar-reducer/sidebar-reducer";
 
 type FriendsPropsType = {
     friendsData: FriendsType[]

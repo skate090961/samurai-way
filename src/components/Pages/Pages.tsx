@@ -5,10 +5,9 @@ import ChatPage from "./ChatPage/ChatPage";
 import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
-import {StoreType} from "../../store/store";
 
 type PagesPropsType = {
-    store: StoreType
+    store: any
 }
 
 const Pages: React.FC<PagesPropsType> = ({

@@ -3,8 +3,7 @@ import s from "./Messages.module.css";
 import MessageSender from "../MessageSender/MessageSender";
 import FriendMessage from './Message/FriendMessage/FriendMessage';
 import MyMessage from "./Message/MyMessage/MyMessage";
-import {ChatPageType} from "../../../../store/store";
-
+import {ChatPageType} from "../../../../store/reducers/message-reducer/message-reducer";
 
 type MessagesPropsType = {
     chatData: ChatPageType

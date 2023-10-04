@@ -1,8 +1,11 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostsType} from "../../../../store/store";
-import {addPostCreator, updateNewPostTextCreator} from "../../../../store/reducers/profile-reducer/profile-reducer";
+import {
+    addPostCreator,
+    PostsType,
+    updateNewPostTextCreator
+} from "../../../../store/reducers/profile-reducer/profile-reducer";
 
 type MyPostsPropsType = {
     postsData: PostsType[]

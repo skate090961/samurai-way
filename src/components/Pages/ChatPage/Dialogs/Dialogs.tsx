@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
-import {DialogsType} from "../../../../store/store";
+import {DialogsType} from "../../../../store/reducers/message-reducer/message-reducer";
 
 type DialogsPropsType = {
     dialogsData: DialogsType[]

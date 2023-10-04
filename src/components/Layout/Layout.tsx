@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
-import {SidebarType} from "../../store/store";
+import {SidebarType} from "../../store/reducers/sidebar-reducer/sidebar-reducer";
 
 type LayoutPropsType = {
     sidebarData: SidebarType

@@ -1,7 +1,7 @@
 import React from 'react';
 import './assets/styles/globals.css'
 import './assets/styles/reset.css'
-import store from "./store/store";
+import store from "./store/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -13,4 +13,6 @@ export const rerenderEntireTree = () => {
 }
 rerenderEntireTree()
 
-store.subscriber(rerenderEntireTree)
+store.subscribe(() => {
+    rerenderEntireTree()
+})

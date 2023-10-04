@@ -1,11 +1,10 @@
 import React from 'react';
 import {BrowserRouter} from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import {StoreType} from "./store/store";
 import Pages from "./components/Pages/Pages";
 
 type AppPropsType = {
-    store: StoreType
+    store: any
 }
 
 const App: React.FC<AppPropsType> = ({

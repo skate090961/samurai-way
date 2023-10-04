@@ -2,45 +2,45 @@ import {profileReducer} from "./reducers/profile-reducer/profile-reducer";
 import {messageReducer} from "./reducers/message-reducer/message-reducer";
 import {sidebarReducer} from "./reducers/sidebar-reducer/sidebar-reducer";
 
-export type PostsType = {
+type PostsType = {
     id: string
     text: string
     likesCount: number
     date: string
 }
-export type DialogsType = {
+type DialogsType = {
     id: string
     name: string
     avatar: string
 }
-export type MessagesType = {
+type MessagesType = {
     id: string
     message: string
     time: string
 }
-export type FriendsType = {
+type FriendsType = {
     id: string
     name: string
     avatar: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: PostsType[]
     newPostText: string
 }
-export type ChatPageType = {
+type ChatPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
     newMessageText: string
 }
-export type SidebarType = {
+type SidebarType = {
     friends: FriendsType[]
 }
-export type StateType = {
+type StateType = {
     profilePage: ProfilePageType
     chatPage: ChatPageType
     sidebar: SidebarType
 }
-export type StoreType = {
+type StoreType = {
     _state: StateType
     _rerenderEntireTree: () => void
     getState: () => StateType
@@ -150,4 +150,4 @@ const store: StoreType = {
     }
 }
 
-export default store
+export default {}
