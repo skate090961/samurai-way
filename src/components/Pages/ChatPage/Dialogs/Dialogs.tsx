@@ -2,15 +2,13 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import {DialogsType} from "../../../../store/reducers/message-reducer/message-reducer";
+import {useSelector} from "react-redux";
+import {RootReducerType} from "../../../../store/reducers/rootReducer";
 
-type DialogsPropsType = {
-    dialogsData: DialogsType[]
-}
+const Dialogs = () => {
+    const dialogs = useSelector<RootReducerType, DialogsType[]>(state => state.chatPage.dialogs)
 
-const Dialogs: React.FC<DialogsPropsType> = ({
-                                                 dialogsData
-                                             }) => {
-    const dialogsList = dialogsData.map(d =>
+    const dialogsList = dialogs.map(d =>
         <Dialog
             id={d.id}
             key={d.id}

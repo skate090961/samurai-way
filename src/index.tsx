@@ -4,15 +4,11 @@ import './assets/styles/reset.css'
 import store from "./store/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
+import {Provider} from "react-redux";
 
-export const rerenderEntireTree = () => {
-    ReactDOM.render(
-        <App store={store}/>,
-        document.getElementById('root')
-    );
-}
-rerenderEntireTree()
-
-store.subscribe(() => {
-    rerenderEntireTree()
-})
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('root')
+);

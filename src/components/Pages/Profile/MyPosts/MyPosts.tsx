@@ -1,30 +1,28 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {
-    addPostCreator,
-    PostsType,
-    updateNewPostTextCreator
-} from "../../../../store/reducers/profile-reducer/profile-reducer";
+import {PostsType} from "../../../../store/reducers/profile-reducer/profile-reducer";
 
 type MyPostsPropsType = {
-    postsData: PostsType[]
+    posts: PostsType[]
     newPostText: string
-    dispatch: (action: any) => void
+    updatePostText: (newText: string) => void
+    addPost: () => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = ({
-                                                 postsData,
+                                                 posts,
                                                  newPostText,
-                                                 dispatch
+                                                 updatePostText,
+                                                 addPost
                                              }) => {
     const addPostHandler = () => {
-        dispatch(addPostCreator())
+        addPost()
     }
-    const onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNewPostTextCreator(e.currentTarget.value))
+    const changePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        updatePostText(e.currentTarget.value)
     }
-    const postsList = postsData.map(mp =>
+    const postsList = posts.map(mp =>
         <Post
             key={mp.id}
             id={mp.id}
@@ -46,7 +44,7 @@ const MyPosts: React.FC<MyPostsPropsType> = ({
                         placeholder={'Write something...'}
                         rows={3}
                         value={newPostText}
-                        onChange={onPostChangeHandler}
+                        onChange={changePostHandler}
                     />
                 </div>
                 <button className={s.myPosts__addPost} onClick={addPostHandler}>

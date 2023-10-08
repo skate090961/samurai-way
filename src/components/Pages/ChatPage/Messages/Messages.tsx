@@ -1,20 +1,15 @@
 import React from 'react';
 import s from "./Messages.module.css";
-import MessageSender from "../MessageSender/MessageSender";
 import FriendMessage from './Message/FriendMessage/FriendMessage';
 import MyMessage from "./Message/MyMessage/MyMessage";
-import {ChatPageType} from "../../../../store/reducers/message-reducer/message-reducer";
+import {MessagesType} from "../../../../store/reducers/message-reducer/message-reducer";
+import MessageSenderContainer from "../MessageSender/MessageSenderContainer";
+import {useSelector} from "react-redux";
+import {RootReducerType} from "../../../../store/reducers/rootReducer";
 
-type MessagesPropsType = {
-    chatData: ChatPageType
-    dispatch: (action: any) => void
-}
-
-const Messages: React.FC<MessagesPropsType> = ({
-                                                   chatData,
-                                                   dispatch
-                                               }) => {
-    const myMessagesList = chatData.messages.map(m =>
+const Messages = () => {
+    const messages = useSelector<RootReducerType, MessagesType[]>(state => state.chatPage.messages)
+    const myMessagesList = messages.map(m =>
         <MyMessage
             key={m.id}
             id={m.id}
@@ -40,7 +35,7 @@ const Messages: React.FC<MessagesPropsType> = ({
                     <FriendMessage/>
                     {myMessagesList}
                 </ul>
-                <MessageSender newMessageText={chatData.newMessageText} dispatch={dispatch}/>
+                <MessageSenderContainer/>
             </div>
         </div>
     );

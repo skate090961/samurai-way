@@ -1,29 +1,27 @@
 import React, {ChangeEvent} from 'react';
 import s from './MessageSender.module.css'
-import {
-    addNewMessageCreator,
-    updateNewMessageTextCreator
-} from "../../../../store/reducers/message-reducer/message-reducer";
 
 type MessageSenderPropsType = {
-    newMessageText: string
-    dispatch: (action: any) => void
+    messageText: string
+    updateMessageText: (text: string) => void
+    addMessage: () => void
 }
 
 const MessageSender: React.FC<MessageSenderPropsType> = ({
-                                                             newMessageText,
-                                                             dispatch
+                                                             messageText,
+                                                             updateMessageText,
+                                                             addMessage
                                                          }) => {
     const onMessageChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(updateNewMessageTextCreator(e.currentTarget.value))
+        updateMessageText(e.currentTarget.value)
     }
     const addNewMessageHandler = () => {
-        dispatch(addNewMessageCreator())
+        addMessage()
     }
     return (
         <div className={s.sender__form}>
             <input
-                value={newMessageText}
+                value={messageText}
                 className={s.sender__input}
                 placeholder={'Type your message here'}
                 onChange={onMessageChangeHandler}

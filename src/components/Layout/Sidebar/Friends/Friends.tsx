@@ -1,16 +1,16 @@
 import React from 'react';
 import s from './Friends.module.css'
 import Friend from "./Friend/Friend";
+import {useSelector} from "react-redux";
 import {FriendsType} from "../../../../store/reducers/sidebar-reducer/sidebar-reducer";
+import {RootReducerType} from "../../../../store/reducers/rootReducer";
 
-type FriendsPropsType = {
-    friendsData: FriendsType[]
-}
+type FriendsPropsType = {}
 
-const Friends: React.FC<FriendsPropsType> = ({
-                                                 friendsData
-                                             }) => {
-    const friendsList = friendsData.map(f =>
+const Friends: React.FC<FriendsPropsType> = ({}) => {
+    const friends = useSelector<RootReducerType, FriendsType[]>(state => state.sidebar.friends)
+
+    const friendsList = friends.map(f =>
         <Friend
             key={f.id}
             id={f.id}
