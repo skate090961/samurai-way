@@ -2,13 +2,17 @@ type LocationType = {
     country: string
     city: string
 }
+type PhotosType = {
+    small: string | null
+    large: string | null
+}
 export type UserType = {
-    id: string
-    avatar: string
-    fullName: string
-    location: LocationType
-    isFollow: boolean,
-    status: string
+    id: number
+    photos: PhotosType
+    name: string
+    // location: LocationType
+    followed: boolean,
+    status: string | null
 }
 export type UsersType = {
     users: UserType[]
@@ -26,7 +30,7 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
             return {
                 ...state,
                 users: state.users.map(u =>
-                    u.id === action.userId ? {...u, isFollow: !u.isFollow} : u
+                    u.id === action.userId ? {...u, followed: !u.followed} : u
                 )
             }
         case 'SET-USERS':
@@ -39,7 +43,7 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
     }
 }
 
-export const changeFollowingStatusAC = (userId: string) => (
+export const changeFollowingStatusAC = (userId: number) => (
     {
         type: 'CHANGE-FOLLOWING-STATUS',
         userId

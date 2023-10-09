@@ -9,7 +9,7 @@ const mapStateToProps = (state: RootReducerType) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
-    changeSubscriptionStatus: (userId: string) => dispatch(changeFollowingStatusAC(userId)),
+    changeFollowingStatus: (userId: number) => dispatch(changeFollowingStatusAC(userId)),
     setUsers: (users: UserType[]) => dispatch(setUsersAC(users))
 })
 

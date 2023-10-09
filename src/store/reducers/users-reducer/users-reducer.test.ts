@@ -3,82 +3,76 @@ import {changeFollowingStatusAC, setUsersAC, usersReducer, UsersType} from "./us
 const startState: UsersType = {
     users: [
         {
-            id: '1',
-            fullName: 'Max P.',
-            avatar: '...',
-            location: {
-                country: 'Russia',
-                city: 'Moscow'
+            id: 1,
+            name: 'Max P.',
+            photos: {
+                small: null,
+                large: null
             },
-            isFollow: false,
+            followed: false,
             status: 'lorem ipsum lorem'
         },
         {
-            id: '2',
-            fullName: 'Michael F.',
-            avatar: '...',
-            location: {
-                country: 'USA',
-                city: 'Nebraska'
+            id: 2,
+            name: 'Michael F.',
+            photos: {
+                small: null,
+                large: null
             },
-            isFollow: true,
+            followed: true,
             status: 'Im a boss'
         },
         {
-            id: '3',
-            fullName: 'Viktor P.',
-            avatar: '...',
-            location: {
-                country: 'Russia',
-                city: 'Saint-Petersburg'
+            id: 3,
+            name: 'Viktor P.',
+            photos: {
+                small: null,
+                large: null
             },
-            isFollow: false,
+            followed: false,
             status: 'Life is like'
         },
     ]
 }
 
 test('user should be subscription status changed', () => {
-    const endState = usersReducer(startState, changeFollowingStatusAC('1'))
+    const endState = usersReducer(startState, changeFollowingStatusAC(1))
 
-    expect(endState.users[0].isFollow).toBeTruthy()
-    expect(endState.users[1].isFollow).toBeTruthy()
-    expect(endState.users[2].isFollow).toBeFalsy()
+    expect(endState.users[0].followed).toBeTruthy()
+    expect(endState.users[1].followed).toBeTruthy()
+    expect(endState.users[2].followed).toBeFalsy()
 })
 
 test('users list should be update', () => {
     const users = [
         {
-            id: '4',
-            fullName: 'Max P.',
-            avatar: '...',
-            location: {
-                country: 'Russia',
-                city: 'Moscow'
+            id: 4,
+            name: 'Max P.',
+            photos: {
+                small: null,
+                large: null
             },
-            isFollow: false,
+            followed: false,
             status: 'lorem ipsum lorem'
         },
         {
-            id: '5',
-            fullName: 'Michael F.',
-            avatar: '...',
-            location: {
-                country: 'USA',
-                city: 'Nebraska'
+            id: 5,
+            name: 'Michael F.',
+            photos: {
+                small: null,
+                large: null
             },
-            isFollow: true,
+            followed: true,
             status: 'Im a boss'
         },
         {
-            id: '6',
-            fullName: 'Viktor P.',
-            avatar: '...',
-            location: {
-                country: 'Russia',
-                city: 'Saint-Petersburg'
+            id: 6,
+            name: 'Viktor P.',
+            photos: {
+                small: null,
+                large: null
             },
-            isFollow: false,
+            followed: false,
             status: 'Life is like'
         },
     ]

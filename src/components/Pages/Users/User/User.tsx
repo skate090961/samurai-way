@@ -1,29 +1,32 @@
 import React from 'react';
 import {UserType} from "../../../../store/reducers/users-reducer/users-reducer";
 import s from './User.module.css'
+import userPhoto from "../../../../assets/images/user-avatar-default.jpg"
 
 type UserPropsType = {
     user: UserType
-    changeSubscriptionStatus: (userId: string) => void
+    changeFollowingStatus: (userId: number) => void
 }
 
 const User: React.FC<UserPropsType> = ({
                                            user,
-                                           changeSubscriptionStatus,
+                                           changeFollowingStatus,
                                        }) => {
-    const {id, avatar, isFollow, status, location, fullName} = user
+    const {id, photos, followed, status, name} = user
+    const {large} = photos
 
     const changeSubscriptionStatusHandler = () => {
-        changeSubscriptionStatus(id)
+        changeFollowingStatus(id)
     }
-    const buttonTitle = isFollow ? 'Unfollow' : 'Follow'
-    const buttonClasses = `${s.subscribe__button} ${isFollow ? s.unfollow_color : s.follow_color}`
+    const buttonTitle = followed ? 'Unfollow' : 'Follow'
+    const buttonClasses = `${s.subscribe__button} ${followed ? s.unfollow_color : s.follow_color}`
+    const isShowAvatar = large !== null ? large : userPhoto
     return (
         <li className={s.user}>
-            <img src={avatar} alt="user-avatar" className={s.user__avatar}/>
+            <img src={isShowAvatar} alt="user-avatar" className={s.user__avatar}/>
             <div className={s.user__info}>
-                <span className={s.user__name}>{fullName}</span>
-                <span className={s.user__location}>{`${location.country}, ${location.city}`}</span>
+                <span className={s.user__name}>{name}</span>
+                <span className={s.user__location}>{'Russia, Moscow'}</span>
                 <span className={s.user__status}>{status}</span>
             </div>
             <div className={s.user__button_container}>
