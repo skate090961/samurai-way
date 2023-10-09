@@ -1,0 +1,58 @@
+.user {
+    padding: 20px;
+    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
+    border-radius: 10px;
+    flex-basis: 31%;
+}
+
+.user__info {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.user__name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.user__location {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.user__status {
+    font-size: 16px;
+}
+
+.user__button_container {
+    display: flex;
+    justify-content: center;
+}
+
+.subscribe__button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 10px;
+}
+
+.follow_color {
+    color: white;
+    background-color: #0085ff;
+}
+
+.follow_color:hover {
+    background-color: #036dcf;
+}
+
+.unfollow_color {
+    color: #ff4763;
+    background-color: #ffd3c6;
+}
+
+.unfollow_color:hover {
+    color: white;
+    background-color: #f44c4c;
+}

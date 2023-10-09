@@ -11,6 +11,7 @@ const Navbar = () => {
                 <NavbarItem pathTo={'news'} src={'https://www.svgrepo.com/show/522410/globe.svg'} title={'News'} />
                 <NavbarItem pathTo={'music'} src={'https://www.svgrepo.com/show/522428/music.svg'} title={'Music'} />
                 <NavbarItem pathTo={'settings'} src={'https://www.svgrepo.com/show/522451/settings-cog.svg'} title={'Settings'} />
+                <NavbarItem pathTo={'users'} src={'https://www.svgrepo.com/show/522443/search.svg'} title={'Find Users'} />
             </ul>
             <div className={s.horizontal_line}></div>
         </nav>

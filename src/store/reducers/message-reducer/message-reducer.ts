@@ -71,9 +71,16 @@ export const messageReducer = (state: ChatPageType = initialState, action: Actio
                 message: state.newMessageText,
                 time: getRefactorTime()
             }
-            return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
+            return {
+                ...state,
+                messages: [...state.messages, newMessage],
+                newMessageText: ''
+            }
         case 'UPDATE-NEW-MESSAGE-TEXT':
-            return {...state, newMessageText: action.newText }
+            return {
+                ...state,
+                newMessageText: action.newText
+            }
         default:
             return state
     }

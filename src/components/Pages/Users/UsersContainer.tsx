@@ -1,0 +1,18 @@
+import {connect} from "react-redux";
+import Users from "./Users";
+import {Action, Dispatch} from "redux";
+import {changeSubscriptionStatusAC, setUsersAC, UserType} from "../../../store/reducers/users-reducer/users-reducer";
+import {RootReducerType} from "../../../store/reducers/rootReducer";
+
+const mapStateToProps = (state: RootReducerType) => ({
+    users: state.usersPage.users
+})
+
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+    changeSubscriptionStatus: (userId: string) => dispatch(changeSubscriptionStatusAC(userId)),
+    setUsers: (users: UserType[]) => dispatch(setUsersAC(users))
+})
+
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+
+export default UsersContainer
