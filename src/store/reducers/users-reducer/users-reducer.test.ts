@@ -1,4 +1,4 @@
-import {changeSubscriptionStatusAC, setUsersAC, usersReducer, UsersType} from "./users-reducer";
+import {changeFollowingStatusAC, setUsersAC, usersReducer, UsersType} from "./users-reducer";
 
 const startState: UsersType = {
     users: [
@@ -39,7 +39,7 @@ const startState: UsersType = {
 }
 
 test('user should be subscription status changed', () => {
-    const endState = usersReducer(startState, changeSubscriptionStatusAC('1'))
+    const endState = usersReducer(startState, changeFollowingStatusAC('1'))
 
     expect(endState.users[0].isFollow).toBeTruthy()
     expect(endState.users[1].isFollow).toBeTruthy()

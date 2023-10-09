@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import Users from "./Users";
 import {Action, Dispatch} from "redux";
-import {changeSubscriptionStatusAC, setUsersAC, UserType} from "../../../store/reducers/users-reducer/users-reducer";
+import {changeFollowingStatusAC, setUsersAC, UserType} from "../../../store/reducers/users-reducer/users-reducer";
 import {RootReducerType} from "../../../store/reducers/rootReducer";
 
 const mapStateToProps = (state: RootReducerType) => ({
@@ -9,7 +9,7 @@ const mapStateToProps = (state: RootReducerType) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
-    changeSubscriptionStatus: (userId: string) => dispatch(changeSubscriptionStatusAC(userId)),
+    changeSubscriptionStatus: (userId: string) => dispatch(changeFollowingStatusAC(userId)),
     setUsers: (users: UserType[]) => dispatch(setUsersAC(users))
 })
 

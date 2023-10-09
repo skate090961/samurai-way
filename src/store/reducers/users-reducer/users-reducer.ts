@@ -15,81 +15,14 @@ export type UsersType = {
 }
 
 const initialState = {
-    users: [
-        {
-            id: '1',
-            fullName: 'Max P.',
-            avatar: 'https://avataaars.io/?avatarStyle=Circle&topType=LongHairShavedSides&accessoriesType=Round&facialHairType=BeardMedium&facialHairColor=Auburn&clotheType=BlazerShirt&eyeType=Wink&eyebrowType=Default&mouthType=Disbelief&skinColor=Yellow',
-            location: {
-                country: 'Russia',
-                city: 'Moscow'
-            },
-            isFollow: false,
-            status: 'lorem ipsum lorem'
-        },
-        {
-            id: '2',
-            fullName: 'Michael F.',
-            avatar: 'https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Blank&hairColor=PastelPink&facialHairType=MoustacheMagnum&facialHairColor=Blonde&clotheType=Hoodie&clotheColor=Pink&eyeType=Side&eyebrowType=DefaultNatural&mouthType=Vomit&skinColor=Brown',
-            location: {
-                country: 'USA',
-                city: 'Nebraska'
-            },
-            isFollow: true,
-            status: 'Im a boss'
-        },
-        {
-            id: '3',
-            fullName: 'Viktor P.',
-            avatar: 'https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight2&accessoriesType=Round&hairColor=BlondeGolden&facialHairType=BeardMedium&facialHairColor=BlondeGolden&clotheType=ShirtScoopNeck&clotheColor=White&eyeType=Squint&eyebrowType=RaisedExcitedNatural&mouthType=Smile&skinColor=Brown',
-            location: {
-                country: 'Russia',
-                city: 'Saint-Petersburg'
-            },
-            isFollow: true,
-            status: 'Life is like'
-        },
-        {
-            id: '4',
-            fullName: 'Morgen A.',
-            avatar: 'https://avataaars.io/?avatarStyle=Circle&topType=LongHairDreads&accessoriesType=Wayfarers&hatColor=PastelYellow&hairColor=Black&facialHairType=MoustacheFancy&facialHairColor=BrownDark&clotheType=ShirtScoopNeck&clotheColor=PastelOrange&eyeType=Hearts&eyebrowType=DefaultNatural&mouthType=Smile&skinColor=Light',
-            location: {
-                country: 'Germany',
-                city: 'Berlin'
-            },
-            isFollow: false,
-            status: 'I like beer'
-        },
-        {
-            id: '5',
-            fullName: 'Jack R.',
-            avatar: 'https://avataaars.io/?avatarStyle=Circle&topType=Hat&accessoriesType=Blank&hairColor=Auburn&facialHairType=BeardMedium&facialHairColor=Auburn&clotheType=ShirtCrewNeck&clotheColor=Red&eyeType=EyeRoll&eyebrowType=UnibrowNatural&mouthType=ScreamOpen&skinColor=DarkBrown',
-            location: {
-                country: 'Canada',
-                city: 'Vancouver'
-            },
-            isFollow: true,
-            status: 'I like hockey'
-        },
-        {
-            id: '6',
-            fullName: 'Misha W.',
-            avatar: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads01&accessoriesType=Prescription01&hairColor=Blue&facialHairType=MoustacheMagnum&facialHairColor=Red&clotheType=ShirtCrewNeck&clotheColor=PastelRed&eyeType=Hearts&eyebrowType=FlatNatural&mouthType=ScreamOpen&skinColor=Yellow',
-            location: {
-                country: 'Russia',
-                city: 'Ivanovo'
-            },
-            isFollow: false,
-            status: 'Like a boss'
-        },
-    ]
+    users: []
 }
 
-type ActionsTypes = ReturnType<typeof changeSubscriptionStatusAC> | ReturnType<typeof setUsersAC>
+type ActionsTypes = ReturnType<typeof changeFollowingStatusAC> | ReturnType<typeof setUsersAC>
 
 export const usersReducer = (state: UsersType = initialState, action: ActionsTypes): UsersType => {
     switch (action.type) {
-        case 'CHANGE-SUBSCRIPTION-STATUS':
+        case 'CHANGE-FOLLOWING-STATUS':
             return {
                 ...state,
                 users: state.users.map(u =>
@@ -106,9 +39,9 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
     }
 }
 
-export const changeSubscriptionStatusAC = (userId: string) => (
+export const changeFollowingStatusAC = (userId: string) => (
     {
-        type: 'CHANGE-SUBSCRIPTION-STATUS',
+        type: 'CHANGE-FOLLOWING-STATUS',
         userId
     } as const
 )
