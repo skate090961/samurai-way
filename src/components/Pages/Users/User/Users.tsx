@@ -23,7 +23,7 @@ class Users extends React.Component<any, any> {
                                  className={userStyle.user__avatar}/>
                             <div className={userStyle.user__info}>
                                 <span className={userStyle.user__name}>{u.name}</span>
-                                <span className={userStyle.user__location}>{'Russia, Moscow'}</span>
+                                <span className={userStyle.user__location}>{'Russia, Moscow1'}</span>
                                 <span className={userStyle.user__status}>{u.status}</span>
                             </div>
                             <div className={userStyle.user__button_container}>
