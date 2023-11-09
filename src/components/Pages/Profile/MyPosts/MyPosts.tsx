@@ -1,26 +1,24 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostsType} from "../../../../store/reducers/profile-reducer/profile-reducer";
+import {
+    addPostCreator,
+    PostsType,
+    updateNewPostTextCreator
+} from "../../../../store/reducers/profile-reducer/profile-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {RootReducerType} from "../../../../store/reducers/rootReducer";
 
-type MyPostsPropsType = {
-    posts: PostsType[]
-    newPostText: string
-    updatePostText: (newText: string) => void
-    addPost: () => void
-}
+const MyPosts = () => {
+    const dispatch = useDispatch()
+    const posts = useSelector<RootReducerType, PostsType[]>(state => state.profilePage.posts)
+    const newPostText = useSelector<RootReducerType, string>(state => state.profilePage.newPostText)
 
-const MyPosts: React.FC<MyPostsPropsType> = ({
-                                                 posts,
-                                                 newPostText,
-                                                 updatePostText,
-                                                 addPost
-                                             }) => {
     const addPostHandler = () => {
-        addPost()
+        dispatch(addPostCreator())
     }
     const changePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        updatePostText(e.currentTarget.value)
+        dispatch(updateNewPostTextCreator(e.currentTarget.value))
     }
     const postsList = posts.map(mp =>
         <Post

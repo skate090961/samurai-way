@@ -1,22 +1,22 @@
 import React from 'react';
-import {UserType} from "../../../../store/reducers/users-reducer/users-reducer";
+import {changeFollowingStatusAC, UserType} from "../../../../store/reducers/users-reducer/users-reducer";
 import s from './User.module.css'
 import userPhoto from "../../../../assets/images/user-avatar-default.jpg"
+import {useDispatch} from "react-redux";
 
 type UserPropsType = {
     user: UserType
-    changeFollowingStatus: (userId: number) => void
 }
 
 const User: React.FC<UserPropsType> = ({
-                                           user,
-                                           changeFollowingStatus,
+                                           user
                                        }) => {
+    const dispatch =useDispatch()
     const {id, photos, followed, status, name} = user
     const {large} = photos
 
     const changeSubscriptionStatusHandler = () => {
-        changeFollowingStatus(id)
+        dispatch(changeFollowingStatusAC(id))
     }
     const buttonTitle = followed ? 'Unfollow' : 'Follow'
     const buttonClasses = `${s.subscribe__button} ${followed ? s.unfollow_color : s.follow_color}`
