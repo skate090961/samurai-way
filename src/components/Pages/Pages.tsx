@@ -5,7 +5,6 @@ import ChatPage from "./ChatPage/ChatPage";
 import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
-import Users from "./Users/Users";
 import UsersContainer from "./Users/UsersContainer";
 
 const Pages = () => {
