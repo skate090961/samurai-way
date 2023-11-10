@@ -43,11 +43,16 @@ class Users extends React.Component<UsersProps> {
                         <User user={user} changeFollowingStatus={this.props.changeFollowingStatus}/>
                     )}
                 </ul>
-                <Pagination
-                    updateCurrentPage={this.updateCurrentPage}
-                    pagesCount={pagesCount}
-                    currentPage={this.props.currentPage}
-                />
+                {pagesCount >= 2
+                    ?
+                    <Pagination
+                        updateCurrentPage={this.updateCurrentPage}
+                        pagesCount={pagesCount}
+                        currentPage={this.props.currentPage}
+                    />
+                    :
+                    null
+                }
             </div>
 
         )
