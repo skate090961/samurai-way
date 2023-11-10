@@ -1,13 +1,14 @@
 import {connect} from "react-redux";
 import {Action, Dispatch} from "redux";
 import {
-    changeFollowingStatusAC, setCurrentPageAC,
+    changeFollowingStatusAC,
+    setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
     UserType
 } from "../../../store/reducers/users-reducer/users-reducer";
 import {RootReducerType} from "../../../store/reducers/rootReducer";
-import Users from "./Users";
+import UsersAPIComponent from "./UsersAPIComponent";
 
 const mapStateToProps = (state: RootReducerType) => ({
     users: state.usersPage.users,
@@ -23,6 +24,6 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
     setCurrentPage: (currentPage: number) => dispatch(setCurrentPageAC(currentPage))
 })
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
 
 export default UsersContainer
