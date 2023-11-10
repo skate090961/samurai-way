@@ -32,7 +32,10 @@ const startState: UsersType = {
             followed: false,
             status: 'Life is like'
         },
-    ]
+    ],
+    pageSize: 6,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 test('user should be subscription status changed', () => {
