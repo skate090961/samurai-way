@@ -1,44 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {UserType} from "../../../../store/reducers/users-reducer/users-reducer";
+import userPhoto from "../../../../assets/images/user-avatar-default.jpg";
 import s from './User.module.css'
-import userPhoto from "../../../../assets/images/user-avatar-default.jpg"
 
-type UserPropsType = {
+interface UserItemProps {
     user: UserType
     changeFollowingStatus: (userId: number) => void
 }
 
-const User: React.FC<UserPropsType> = ({
-                                           user,
-                                           changeFollowingStatus,
-                                       }) => {
-    const {id, photos, followed, status, name} = user
-    const {large} = photos
+class User extends Component<UserItemProps> {
+    render() {
+        const { user, changeFollowingStatus } = this.props
 
-    const changeSubscriptionStatusHandler = () => {
-        changeFollowingStatus(id)
+        return (
+            <li className={s.user} key={user.id}>
+                <img src={user.photos.large !== null ? user.photos.large : userPhoto} alt="user-avatar" className={s.user__avatar} />
+                <div className={s.user__info}>
+                    <span className={s.user__name}>{user.name}</span>
+                    <span className={s.user__location}>{'Russia, Moscow1'}</span>
+                    <span className={s.user__status}>{user.status}</span>
+                </div>
+                <div className={s.user__button_container}>
+                    <button className={`${s.subscribe__button} ${user.followed ? s.unfollow_color : s.follow_color}`} onClick={() => changeFollowingStatus(user.id)}>
+                        {user.followed ? 'Unfollow' : 'Follow'}
+                    </button>
+                </div>
+            </li>
+        );
     }
-    const buttonTitle = followed ? 'Unfollow' : 'Follow'
-    const buttonClasses = `${s.subscribe__button} ${followed ? s.unfollow_color : s.follow_color}`
-    const isShowAvatar = large !== null ? large : userPhoto
-    return (
-        <li className={s.user}>
-            <img src={isShowAvatar} alt="user-avatar" className={s.user__avatar}/>
-            <div className={s.user__info}>
-                <span className={s.user__name}>{name}</span>
-                <span className={s.user__location}>{'Russia, Moscow'}</span>
-                <span className={s.user__status}>{status}</span>
-            </div>
-            <div className={s.user__button_container}>
-                <button
-                    className={buttonClasses}
-                    onClick={changeSubscriptionStatusHandler}
-                >
-                    {buttonTitle}
-                </button>
-            </div>
-        </li>
-    );
-};
+}
 
-export default User;
+export default User
