@@ -5,10 +5,10 @@ import MyMessage from "./Message/MyMessage/MyMessage";
 import {MessagesType} from "../../../../store/reducers/message-reducer/message-reducer";
 import MessageSenderContainer from "../MessageSender/MessageSenderContainer";
 import {useSelector} from "react-redux";
-import {RootReducerType} from "../../../../store/reducers/rootReducer";
+import {RootStateType} from "../../../../store/reducers/rootReducer";
 
 const Messages = () => {
-    const messages = useSelector<RootReducerType, MessagesType[]>(state => state.chatPage.messages)
+    const messages = useSelector<RootStateType, MessagesType[]>(state => state.chatPage.messages)
     const myMessagesList = messages.map(m =>
         <MyMessage
             key={m.id}

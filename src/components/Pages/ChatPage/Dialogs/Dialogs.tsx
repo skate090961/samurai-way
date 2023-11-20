@@ -3,10 +3,10 @@ import s from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import {DialogsType} from "../../../../store/reducers/message-reducer/message-reducer";
 import {useSelector} from "react-redux";
-import {RootReducerType} from "../../../../store/reducers/rootReducer";
+import {RootStateType} from "../../../../store/reducers/rootReducer";
 
 const Dialogs = () => {
-    const dialogs = useSelector<RootReducerType, DialogsType[]>(state => state.chatPage.dialogs)
+    const dialogs = useSelector<RootStateType, DialogsType[]>(state => state.chatPage.dialogs)
 
     const dialogsList = dialogs.map(d =>
         <Dialog

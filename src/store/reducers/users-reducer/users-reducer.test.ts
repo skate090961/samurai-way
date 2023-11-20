@@ -6,36 +6,40 @@ const startState: UsersType = {
             id: 1,
             name: 'Max P.',
             photos: {
-                small: null,
-                large: null
+                small: '',
+                large: ''
             },
             followed: false,
-            status: 'lorem ipsum lorem'
+            status: 'lorem ipsum lorem',
+            uniqueUrlName: ''
         },
         {
             id: 2,
             name: 'Michael F.',
             photos: {
-                small: null,
-                large: null
+                small: '',
+                large: ''
             },
             followed: true,
-            status: 'Im a boss'
+            status: 'Im a boss',
+            uniqueUrlName: ''
         },
         {
             id: 3,
             name: 'Viktor P.',
             photos: {
-                small: null,
-                large: null
+                small: '',
+                large: ''
             },
             followed: false,
-            status: 'Life is like'
+            status: 'Life is like',
+            uniqueUrlName: ''
         },
     ],
     pageSize: 6,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isLoading: false
 }
 
 test('user should be subscription status changed', () => {
@@ -52,31 +56,34 @@ test('users list should be update', () => {
             id: 4,
             name: 'Max P.',
             photos: {
-                small: null,
-                large: null
+                small: '',
+                large: ''
             },
             followed: false,
-            status: 'lorem ipsum lorem'
+            status: 'lorem ipsum lorem',
+            uniqueUrlName: ''
         },
         {
             id: 5,
             name: 'Michael F.',
             photos: {
-                small: null,
-                large: null
+                small: '',
+                large: ''
             },
             followed: true,
-            status: 'Im a boss'
+            status: 'Im a boss',
+            uniqueUrlName: ''
         },
         {
             id: 6,
             name: 'Viktor P.',
             photos: {
-                small: null,
-                large: null
+                small: '',
+                large: ''
             },
             followed: false,
-            status: 'Life is like'
+            status: 'Life is like',
+            uniqueUrlName: ''
         },
     ]
     const endState = usersReducer(startState, setUsersAC(users))

@@ -7,12 +7,12 @@ import {
     updateNewPostTextCreator
 } from "../../../../store/reducers/profile-reducer/profile-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {RootReducerType} from "../../../../store/reducers/rootReducer";
+import {RootStateType} from "../../../../store/reducers/rootReducer";
 
 const MyPosts = () => {
     const dispatch = useDispatch()
-    const posts = useSelector<RootReducerType, PostsType[]>(state => state.profilePage.posts)
-    const newPostText = useSelector<RootReducerType, string>(state => state.profilePage.newPostText)
+    const posts = useSelector<RootStateType, PostsType[]>(state => state.profilePage.posts)
+    const newPostText = useSelector<RootStateType, string>(state => state.profilePage.newPostText)
 
     const addPostHandler = () => {
         dispatch(addPostCreator())

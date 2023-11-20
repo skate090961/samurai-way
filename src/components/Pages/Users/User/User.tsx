@@ -1,8 +1,9 @@
-import React from 'react';
-import {changeFollowingStatusAC, UserType} from "../../../../store/reducers/users-reducer/users-reducer";
+import React from 'react'
+import {changeFollowingStatusAC} from "../../../../store/reducers/users-reducer/users-reducer"
 import s from './User.module.css'
 import userPhoto from "../../../../assets/images/user-avatar-default.jpg"
-import {useDispatch} from "react-redux";
+import {useDispatch} from "react-redux"
+import {UserType} from "../../../../api/users-api"
 
 type UserPropsType = {
     user: UserType
@@ -38,7 +39,7 @@ const User: React.FC<UserPropsType> = ({
                 </button>
             </div>
         </li>
-    );
-};
+    )
+}
 
-export default User;
+export default User

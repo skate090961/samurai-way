@@ -1,65 +1,57 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react'
 import s from './Users.module.css'
-import {
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    UserType
-} from "../../../store/reducers/users-reducer/users-reducer";
-import User from "./User/User";
-import axios from "axios";
-import {useDispatch, useSelector} from "react-redux";
-import {RootReducerType} from "../../../store/reducers/rootReducer";
-import Pagination from "../../Pagination/Pagination";
-import UserSkeleton from "./Skeleton/UserSkeleton";
+import {setCurrentPageAC, setUsersTC,} from "../../../store/reducers/users-reducer/users-reducer"
+import User from "./User/User"
+import {useSelector} from "react-redux"
+import {RootStateType} from "../../../store/reducers/rootReducer"
+import Pagination from "../../Pagination/Pagination"
+import UserSkeleton from "./UserSkeleton/UserSkeleton"
+import {UserType} from "../../../api/users-api"
+import {useAppDispatch} from "../../../store/store"
 
 const Users = () => {
-    const users = useSelector<RootReducerType, UserType[]>(state => state.usersPage.users)
-    const pageSize = useSelector<RootReducerType, number>(state => state.usersPage.pageSize)
-    const currentPage = useSelector<RootReducerType, number>(state => state.usersPage.currentPage)
-    const totalUsersCount = useSelector<RootReducerType, number>(state => state.usersPage.totalUsersCount)
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const dispatch = useDispatch()
+    const users = useSelector<RootStateType, UserType[]>(state => state.usersPage.users)
+    const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
+    const currentPage = useSelector<RootStateType, number>(state => state.usersPage.currentPage)
+    const totalUsersCount = useSelector<RootStateType, number>(state => state.usersPage.totalUsersCount)
+    const isLoading = useSelector<RootStateType, boolean>(state => state.usersPage.isLoading)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
-        setIsLoading(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}&page=${currentPage}`)
-            .then(r => {
-                dispatch(setUsersAC(r.data.items))
-                dispatch(setTotalUsersCountAC(r.data.totalCount))
-                setIsLoading(false)
-            })
+        dispatch(setUsersTC())
     }, [currentPage])
 
     const setCurrentPage = (currentPage: number) => dispatch(setCurrentPageAC(currentPage))
-
     const usersList = users.map(u =>
         <User
             key={u.id}
             user={u}
         />
     )
-    const usersSkeleton = users.map(u => <UserSkeleton/>)
 
-
+    const usersSkeleton = Array.from({length: pageSize}, ((_, index) => <UserSkeleton key={index}/>))
     const totalPagesCount = Math.ceil(totalUsersCount / pageSize)
+    const isShowPagination = totalPagesCount >= 2
+    const isShowSkeleton = isLoading ? usersSkeleton : usersList
+
     return (
         <div>
             <ul className={s.users}>
-                {isLoading ? usersSkeleton : usersList}
+                {isShowSkeleton}
             </ul>
-            {totalPagesCount >= 2 || !isLoading
+            {isShowPagination
                 ?
                 <Pagination
                     totalPagesCount={totalPagesCount}
                     setCurrentPage={setCurrentPage}
                     currentPage={currentPage}
+                    isLoading={isLoading}
                 />
                 :
-                null
+                <></>
             }
         </div>
-    );
-};
+    )
+}
 
-export default Users;
+export default Users

@@ -5,10 +5,10 @@ import {
 } from "../../../../store/reducers/message-reducer/message-reducer";
 import MessageSender from "./MessageSender";
 import {connect} from "react-redux";
-import {RootReducerType} from "../../../../store/reducers/rootReducer";
+import {RootStateType} from "../../../../store/reducers/rootReducer";
 import {Action, Dispatch} from "redux";
 
-const mapStateToProps = (state: RootReducerType) => {
+const mapStateToProps = (state: RootStateType) => {
     return {
         messageText: state.chatPage.newMessageText,
     }
