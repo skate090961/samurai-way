@@ -1,17 +1,6 @@
-import {getRefactorDateAndTime} from "../../../utils/date/getRefactorDateAndTime";
-
-export type PostsType = {
-    id: string
-    text: string
-    likesCount: number
-    date: string
-}
-export type ProfilePageType = {
-    posts: PostsType[]
-    newPostText: string
-}
-
-type ActionsTypes = ReturnType<typeof addPostCreator> | ReturnType<typeof updateNewPostTextCreator>
+import {getRefactorDateAndTime} from "../../../utils/date/getRefactorDateAndTime"
+import {profileAPI, ProfileResponseType} from "../../../api/profile-api"
+import {Dispatch} from "redux"
 
 const initialState: ProfilePageType = {
     posts: [
@@ -28,7 +17,9 @@ const initialState: ProfilePageType = {
             date: '9 янв 2023 в 21:34'
         },
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null,
+    isLoading: false
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
@@ -43,12 +34,53 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, posts: [newPost, ...state.posts], newPostText: ''}
         case 'UPDATE-NEW-POST-TEXT':
             return {...state, newPostText: action.newText}
+        case 'SET-USER-PROFILE':
+            return {...state, profile: action.profile}
+        case 'TOGGLE-PROFILE-LOADING':
+            return {...state, isLoading: action.isLoading}
         default:
             return state
     }
 }
 
-export const addPostCreator = () => ({type: 'ADD-POST'} as const)
-export const updateNewPostTextCreator = (newText: string) => (
-    {type: 'UPDATE-NEW-POST-TEXT', newText} as const
-)
+//type
+export type PostsType = {
+    id: string
+    text: string
+    likesCount: number
+    date: string
+}
+export type ProfilePageType = {
+    posts: PostsType[]
+    newPostText: string
+    profile: ProfileResponseType | null
+    isLoading: boolean
+}
+
+type ActionsTypes = ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof setUserProfileAC>
+    | ReturnType<typeof toggleProfileLoadingAC>
+
+//action
+export const addPostAC = () =>
+    ({type: 'ADD-POST'} as const)
+export const updateNewPostTextAC = (newText: string) =>
+    ({type: 'UPDATE-NEW-POST-TEXT', newText} as const)
+export const setUserProfileAC = (profile: ProfileResponseType) =>
+    ({type: 'SET-USER-PROFILE', profile} as const)
+export const toggleProfileLoadingAC = (isLoading: boolean) =>
+    ({type: 'TOGGLE-PROFILE-LOADING', isLoading} as const)
+
+//thunk
+export const setUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {
+    dispatch(toggleProfileLoadingAC(true))
+    try {
+        if (userId) {
+            const profile = await profileAPI.getUserProfile(userId)
+            dispatch(setUserProfileAC(profile))
+        }
+    } finally {
+        dispatch(toggleProfileLoadingAC(false))
+    }
+}

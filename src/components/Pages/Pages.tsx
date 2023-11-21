@@ -10,7 +10,7 @@ import Users from "./Users/Users";
 const Pages = () => {
     const PATH = {
         ROOT: '/',
-        PROFILE: 'profile',
+        PROFILE: 'profile/:userId?',
         DIALOGS: 'dialogs/*',
         NEWS: 'news',
         MUSIC: 'music',

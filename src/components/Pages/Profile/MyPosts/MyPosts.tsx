@@ -2,9 +2,9 @@ import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {
-    addPostCreator,
+    addPostAC,
     PostsType,
-    updateNewPostTextCreator
+    updateNewPostTextAC
 } from "../../../../store/reducers/profile-reducer/profile-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../../../store/reducers/rootReducer";
@@ -15,10 +15,10 @@ const MyPosts = () => {
     const newPostText = useSelector<RootStateType, string>(state => state.profilePage.newPostText)
 
     const addPostHandler = () => {
-        dispatch(addPostCreator())
+        dispatch(addPostAC())
     }
     const changePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNewPostTextCreator(e.currentTarget.value))
+        dispatch(updateNewPostTextAC(e.currentTarget.value))
     }
     const postsList = posts.map(mp =>
         <Post

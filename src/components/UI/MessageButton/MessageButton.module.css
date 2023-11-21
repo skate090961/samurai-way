@@ -1,0 +1,10 @@
+.button_message {
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: white;
+    background-color: #0085ff;
+}
+
+.button_message:hover {
+    background-color: #036dcf;
+}

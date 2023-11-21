@@ -1,0 +1,86 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile_main {
+    display: flex;
+    gap: 15px;
+}
+
+.profile_header {
+    display: flex;
+    gap: 15px;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-basis: 30%;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-basis: 70%;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.photo {
+    border-radius: 10px;
+    width: 130px;
+}
+
+.user_name {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.profile_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.profile_short_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    font-weight: bold;
+}
+
+.empty {
+    color: #888888;
+    font-size: 14px;
+}
+
+.header_about {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.contact_link {
+    text-decoration: none;
+    color: #0085ff;
+}

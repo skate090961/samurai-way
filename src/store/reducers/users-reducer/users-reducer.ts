@@ -10,12 +10,6 @@ const initialState: UsersType = {
     isLoading: false
 }
 
-type ActionsTypes = ReturnType<typeof changeFollowingStatusAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setTotalUsersCountAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof toggleLoadingStatusAC>
-
 export const usersReducer = (state: UsersType = initialState, action: ActionsTypes): UsersType => {
     switch (action.type) {
         case 'CHANGE-FOLLOWING-STATUS':
@@ -29,7 +23,7 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
             return {...state, totalUsersCount: action.totalUsersCount}
         case 'SET-CURRENT-PAGE':
             return {...state, currentPage: action.currentPage}
-        case 'TOGGLE-LOADING-STATUS':
+        case 'TOGGLE-USER-LOADING':
             return {...state, isLoading: action.isLoading}
         default:
             return state
@@ -37,6 +31,12 @@ export const usersReducer = (state: UsersType = initialState, action: ActionsTyp
 }
 
 //types
+type ActionsTypes = ReturnType<typeof changeFollowingStatusAC>
+    | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setTotalUsersCountAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof toggleUserLoadingAC>
+
 export type UsersType = {
     users: UserType[]
     pageSize: number
@@ -54,12 +54,12 @@ export const setTotalUsersCountAC = (totalUsersCount: number) =>
     ({type: 'SET-TOTAL-USERS-COUNT', totalUsersCount} as const)
 export const setCurrentPageAC = (currentPage: number) =>
     ({type: 'SET-CURRENT-PAGE', currentPage} as const)
-export const toggleLoadingStatusAC = (isLoading: boolean) =>
-    ({type: 'TOGGLE-LOADING-STATUS', isLoading} as const)
+export const toggleUserLoadingAC = (isLoading: boolean) =>
+    ({type: 'TOGGLE-USER-LOADING', isLoading} as const)
 
 //thunk
 export const setUsersTC = () => async (dispatch: Dispatch, getState: () => RootStateType) => {
-    dispatch(toggleLoadingStatusAC(true))
+    dispatch(toggleUserLoadingAC(true))
     const state = getState()
     const {usersPage} = state
     try {
@@ -67,6 +67,6 @@ export const setUsersTC = () => async (dispatch: Dispatch, getState: () => RootS
         dispatch(setUsersAC(users.items))
         dispatch(setTotalUsersCountAC(users.totalCount))
     } finally {
-        dispatch(toggleLoadingStatusAC(false))
+        dispatch(toggleUserLoadingAC(false))
     }
 }

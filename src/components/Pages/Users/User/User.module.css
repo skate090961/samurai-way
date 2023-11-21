@@ -3,9 +3,14 @@
     box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
     border-radius: 10px;
     flex-basis: 31%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .user__avatar {
+    border-radius: 10px;
 }
 
 .user__info {
@@ -31,31 +36,7 @@
 }
 
 .user__button_container {
+    padding-top: 15px;
     display: flex;
     justify-content: center;
-}
-
-.subscribe__button {
-    margin-top: 15px;
-    padding: 10px 30px;
-    border-radius: 10px;
-}
-
-.follow_color {
-    color: white;
-    background-color: #0085ff;
-}
-
-.follow_color:hover {
-    background-color: #036dcf;
-}
-
-.unfollow_color {
-    color: #ff4763;
-    background-color: #ffd3c6;
-}
-
-.unfollow_color:hover {
-    color: white;
-    background-color: #f44c4c;
 }
