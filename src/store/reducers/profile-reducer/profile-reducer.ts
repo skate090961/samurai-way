@@ -73,7 +73,7 @@ export const toggleProfileLoadingAC = (isLoading: boolean) =>
     ({type: 'TOGGLE-PROFILE-LOADING', isLoading} as const)
 
 //thunk
-export const setUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {
+export const getUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {
     dispatch(toggleProfileLoadingAC(true))
     try {
         if (userId) {

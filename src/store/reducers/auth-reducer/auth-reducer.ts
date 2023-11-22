@@ -37,7 +37,7 @@ const setAuthUserDataAC = (authUser: AuthMeDataType, photos: PhotosType | null) 
     ({type: 'SET-AUTH-USER-DATA', authUser, photos} as const)
 
 //thunk
-export const setAuthUserDataTC = () => async (dispatch: AppDispatch) => {
+export const getAuthUserDataTC = () => async (dispatch: AppDispatch) => {
     dispatch(toggleProfileLoadingAC(true))
     const authUser = await authAPI.getAuthMe()
     if (authUser.resultCode === 0) {

@@ -39,11 +39,12 @@ const startState: UsersType = {
     pageSize: 6,
     totalUsersCount: 0,
     currentPage: 1,
-    isLoading: false
+    isLoading: false,
+    followingInProgress: []
 }
 
 test('user should be subscription status changed', () => {
-    const endState = usersReducer(startState, changeFollowingStatusAC(1))
+    const endState = usersReducer(startState, changeFollowingStatusAC(1, true))
 
     expect(endState.users[0].followed).toBeTruthy()
     expect(endState.users[1].followed).toBeTruthy()
@@ -88,7 +89,6 @@ test('users list should be update', () => {
     ]
     const endState = usersReducer(startState, setUsersAC(users))
 
-    expect(endState.users.length).toBe(6)
-    expect(endState.users[0].id).toBe(1)
-    expect(endState.users[5].id).toBe(6)
+    expect(endState.users.length).toBe(3)
+    expect(endState.users[0].id).toBe(4)
 })

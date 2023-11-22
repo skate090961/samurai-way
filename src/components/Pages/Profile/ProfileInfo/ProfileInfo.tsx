@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import s from "./ProfileInfo.module.css"
 import {useParams} from "react-router-dom"
-import {setUserProfileTC} from "../../../../store/reducers/profile-reducer/profile-reducer"
+import {getUserProfileTC} from "../../../../store/reducers/profile-reducer/profile-reducer"
 import {useAppDispatch} from "../../../../store/store"
 import {useSelector} from "react-redux"
 import {RootStateType} from "../../../../store/reducers/rootReducer"
@@ -11,19 +11,33 @@ import FollowButton from "../../../UI/FollowButton/FollowButton"
 import MessageButton from "../../../UI/MessageButton/MessageButton"
 import ProfileSkeleton from "./ProfileSkeleton/ProfileSkeleton"
 import shortenLink from "../../../../utils/link/shortenLink"
-import {setAuthUserDataTC} from "../../../../store/reducers/auth-reducer/auth-reducer";
+import {getAuthUserDataTC} from "../../../../store/reducers/auth-reducer/auth-reducer";
+import {changeFollowingStatusTC} from "../../../../store/reducers/users-reducer/users-reducer";
+import {UserType} from "../../../../api/users-api";
 
 const ProfileInfo = () => {
     const {userId} = useParams()
+
     const profile = useSelector<RootStateType, ProfileResponseType | null>(state => state.profilePage.profile)
     const isLoading = useSelector<RootStateType, boolean>(state => state.profilePage.isLoading)
+    const followingInProgress = useSelector<RootStateType, number[]>(state => state.usersPage.followingInProgress)
+    const users = useSelector<RootStateType, UserType[]>(state => state.usersPage.users)
     const dispatch = useAppDispatch()
     useEffect(() => {
         userId
-            ? dispatch(setUserProfileTC(Number(userId)))
-            : dispatch(setAuthUserDataTC())
+            ? dispatch(getUserProfileTC(Number(userId)))
+            : dispatch(getAuthUserDataTC())
     }, [userId])
 
+
+    const changeSubscriptionStatus = () => {
+        profile && dispatch(changeFollowingStatusTC(profile.userId))
+    }
+
+    const findUser = profile && users.find(u => u.id === profile.userId)
+    const isFollow = findUser ? findUser.followed : false
+
+    const isFollowButtonDisabled = findUser ? followingInProgress.some(id => id === findUser.id) : true
     const contactsListRender = profile && Object.entries(profile.contacts).map(([key, value]) => (<li key={key}>
             <span className={s.header}>{key}: </span>
             <a href={value} className={s.contact_link}>{value ? shortenLink(value) :
@@ -49,8 +63,10 @@ const ProfileInfo = () => {
                             {userId
                                 ?
                                 <div className={s.buttons}>
-                                    <FollowButton followed={true} callback={() => {
-                                    }}/>
+                                    <FollowButton
+                                        followed={isFollow}
+                                        callback={changeSubscriptionStatus}
+                                        disabled={isFollowButtonDisabled}/>
                                     <MessageButton/>
                                 </div>
                                 :

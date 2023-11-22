@@ -22,12 +22,7 @@ const Users = () => {
     }, [currentPage])
 
     const setCurrentPage = (currentPage: number) => dispatch(setCurrentPageAC(currentPage))
-    const usersList = users.map(u =>
-        <User
-            key={u.id}
-            user={u}
-        />
-    )
+    const usersList = users.map(u => <User key={u.id} user={u}/>)
 
     const usersSkeleton = Array.from({length: pageSize}, ((_, index) => <UserSkeleton key={index}/>))
     const totalPagesCount = Math.ceil(totalUsersCount / pageSize)

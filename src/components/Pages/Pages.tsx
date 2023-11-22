@@ -6,6 +6,7 @@ import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
 import Users from "./Users/Users";
+import LoginPage from "./Login/Login";
 
 const Pages = () => {
     const PATH = {
@@ -15,7 +16,8 @@ const Pages = () => {
         NEWS: 'news',
         MUSIC: 'music',
         SETTINGS: 'settings',
-        USERS: 'users'
+        USERS: 'users',
+        LOGIN: 'login',
     }
 
     return (
@@ -27,6 +29,7 @@ const Pages = () => {
             <Route path={PATH.MUSIC} element={<Music/>}></Route>
             <Route path={PATH.SETTINGS} element={<Settings/>}></Route>
             <Route path={PATH.USERS} element={<Users/>}></Route>
+            <Route path={PATH.LOGIN} element={<LoginPage/>}></Route>
             <Route path={'*'} element={<div>Not Found Page</div>}></Route>
         </Routes>
     );

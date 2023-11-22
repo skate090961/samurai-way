@@ -21,3 +21,9 @@
     color: white;
     background-color: #f44c4c;
 }
+
+.subscribe__button:disabled {
+    background-color: #aaaaaa;
+    cursor: auto;
+    color: #f3f3f3;
+}

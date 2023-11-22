@@ -65,5 +65,10 @@
     "@types/redux-form": "8.3.3",
     "@types/uuid": "8.3.4",
     "redux-devtools-extension": "^2.13.9"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }

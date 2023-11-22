@@ -1,7 +1,8 @@
-import React from 'react';
+import React from 'react'
 import s from './Profile.module.css'
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo"
+import MyPosts from "./MyPosts/MyPosts"
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect"
 
 const Profile = () => {
     return (
@@ -9,7 +10,7 @@ const Profile = () => {
             <ProfileInfo/>
             <MyPosts/>
         </main>
-    );
-};
+    )
+}
 
-export default Profile;
+export default withAuthRedirect(Profile)

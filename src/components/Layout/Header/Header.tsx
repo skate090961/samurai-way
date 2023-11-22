@@ -2,14 +2,11 @@ import React from 'react';
 import s from './Header.module.css'
 import {useSelector} from "react-redux";
 import {RootStateType} from "../../../store/reducers/rootReducer";
-import {setAuthUserDataTC} from "../../../store/reducers/auth-reducer/auth-reducer";
-import {useAppDispatch} from "../../../store/store";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
+import {Link} from "react-router-dom";
 
 const Header = () => {
     const isAuth = useSelector<RootStateType, boolean>(state => state.auth.isAuth)
-    const clickHandler = () => dispatch(setAuthUserDataTC())
-    const dispatch = useAppDispatch()
 
     return (
         <header className={s.header}>
@@ -23,7 +20,7 @@ const Header = () => {
                     ?
                     <ProfileDropdown/>
                     :
-                    <a onClick={clickHandler}>Login</a>
+                    <Link to={'login'} className={s.login}>Sign In</Link>
                 }
             </div>
         </header>
