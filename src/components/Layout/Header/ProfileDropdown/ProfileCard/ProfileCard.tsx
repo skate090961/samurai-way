@@ -5,7 +5,7 @@ import defaultPhoto from "../../../../../assets/images/user-avatar-default.jpg";
 import {Link} from "react-router-dom";
 import {IoSettingsOutline} from "react-icons/io5";
 import {FaPowerOff} from "react-icons/fa6";
-import {AuthMeDataExtendsType} from "../../../../../store/reducers/auth-reducer/auth-reducer";
+import {AuthMeDataExtendsType} from "../../../../../store/auth/auth-reducer";
 
 type ProfileCardPropsType = {
     profile: AuthMeDataExtendsType

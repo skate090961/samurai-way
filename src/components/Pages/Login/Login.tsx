@@ -1,6 +1,6 @@
 import React from 'react'
-import {getAuthUserDataTC} from "../../../store/reducers/auth-reducer/auth-reducer";
 import {useAppDispatch} from "../../../store/store";
+import {getAuthUserDataTC} from "../../../store/auth/auth-thunk";
 
 const Login = () => {
     const clickHandler = () => dispatch(getAuthUserDataTC())

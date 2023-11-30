@@ -1,4 +1,4 @@
-import {getRefactorTime} from "../../../utils/date/getRefactorDateAndTime";
+import {getRefactorTime} from "../../utils/date/getRefactorDateAndTime";
 
 export type DialogsType = {
     id: string

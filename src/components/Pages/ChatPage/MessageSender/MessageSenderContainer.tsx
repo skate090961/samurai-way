@@ -2,10 +2,10 @@ import React from 'react';
 import {
     addNewMessageCreator,
     updateNewMessageTextCreator
-} from "../../../../store/reducers/message-reducer/message-reducer";
+} from "../../../../store/message/message-reducer";
 import MessageSender from "./MessageSender";
 import {connect} from "react-redux";
-import {RootStateType} from "../../../../store/reducers/rootReducer";
+import {RootStateType} from "../../../../store/rootReducer";
 import {Action, Dispatch} from "redux";
 
 const mapStateToProps = (state: RootStateType) => {

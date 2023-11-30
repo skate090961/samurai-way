@@ -1,7 +1,4 @@
-import {usersAPI, UserType} from "../../../api/users-api"
-import {Dispatch} from "redux"
-import {RootStateType} from "../rootReducer"
-import {followAPI} from "../../../api/follow-api"
+import {UserType} from "../../api/users-api"
 
 const initialState: UsersType = {
     users: [],
@@ -69,25 +66,3 @@ export const toggleUserLoadingAC = (isLoading: boolean) =>
     ({type: 'TOGGLE-USER-LOADING', isLoading} as const)
 export const toggleFollowingProgressAC = (isFollowingProgress: boolean, userId: number) =>
     ({type: 'TOGGLE-IS-FOLLOWING-PROGRESS', isFollowingProgress, userId} as const)
-
-//thunk
-export const setUsersTC = () => async (dispatch: Dispatch, getState: () => RootStateType) => {
-    dispatch(toggleUserLoadingAC(true))
-    const state = getState()
-    try {
-        const users = await usersAPI.getUsers(state.usersPage.pageSize, state.usersPage.currentPage)
-        dispatch(setUsersAC(users.items))
-        dispatch(setTotalUsersCountAC(users.totalCount))
-    } finally {
-        dispatch(toggleUserLoadingAC(false))
-    }
-}
-
-export const changeFollowingStatusTC = (userId: number) => async (dispatch: Dispatch) => {
-    dispatch(toggleFollowingProgressAC(true, userId))
-    const isUserFollow = await followAPI.getFollow(userId)
-    let followStatus
-    isUserFollow ? followStatus = await followAPI.unFollow(userId) : followStatus = await followAPI.follow(userId)
-    followStatus.resultCode === 0 && dispatch(changeFollowingStatusAC(userId, !isUserFollow))
-    dispatch(toggleFollowingProgressAC(false, userId))
-}

@@ -13,7 +13,6 @@ export type AuthMeDataType = {
     email: string | null
     login: string | null
 }
-
 type AuthResponseType = {
     data: AuthMeDataType
     resultCode: number

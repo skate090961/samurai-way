@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import defaultPhoto from "../../../../assets/images/user-avatar-default.jpg"
 import s from './ProfileDropdown.module.css'
 import {useSelector} from "react-redux"
-import {RootStateType} from "../../../../store/reducers/rootReducer"
-import {AuthMeDataExtendsType} from "../../../../store/reducers/auth-reducer/auth-reducer"
+import {RootStateType} from "../../../../store/rootReducer"
+import {AuthMeDataExtendsType} from "../../../../store/auth/auth-reducer"
 import ProfileCard from "./ProfileCard/ProfileCard";
 
 const ProfileDropdown = () => {

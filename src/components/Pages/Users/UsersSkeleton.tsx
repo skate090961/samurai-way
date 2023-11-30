@@ -16,4 +16,14 @@ const UserSkeleton = (props: any) => (
     </ContentLoader>
 )
 
-export default UserSkeleton
+export const UsersSkeleton = ({ pageSize }: { pageSize: number }) => {
+    const usersSkeletonRenderList = Array.from({length: pageSize}, ((_, index) =>
+        <UserSkeleton key={index}/>))
+
+    return (
+        <>
+            {usersSkeletonRenderList}
+        </>
+    )
+}
+

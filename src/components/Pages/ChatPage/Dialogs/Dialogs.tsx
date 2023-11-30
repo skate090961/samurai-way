@@ -1,12 +1,11 @@
 import React from 'react';
 import s from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
-import {DialogsType} from "../../../../store/reducers/message-reducer/message-reducer";
 import {useSelector} from "react-redux";
-import {RootStateType} from "../../../../store/reducers/rootReducer";
+import {selectDialogs} from "../../../../store/message/message-selectors";
 
 const Dialogs = () => {
-    const dialogs = useSelector<RootStateType, DialogsType[]>(state => state.chatPage.dialogs)
+    const dialogs = useSelector(selectDialogs)
 
     const dialogsList = dialogs.map(d =>
         <Dialog

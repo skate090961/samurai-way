@@ -1,34 +1,26 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import s from "./ProfileInfo.module.css"
 import {useParams} from "react-router-dom"
-import {getUserProfileTC} from "../../../../store/reducers/profile-reducer/profile-reducer"
 import {useAppDispatch} from "../../../../store/store"
 import {useSelector} from "react-redux"
-import {RootStateType} from "../../../../store/reducers/rootReducer"
-import {ProfileResponseType} from "../../../../api/profile-api"
 import defaultPhoto from '../../../../assets/images/user-avatar-default.jpg'
 import FollowButton from "../../../UI/FollowButton/FollowButton"
 import MessageButton from "../../../UI/MessageButton/MessageButton"
-import ProfileSkeleton from "./ProfileSkeleton/ProfileSkeleton"
+import ProfileSkeleton from "./ProfileSkeleton"
 import shortenLink from "../../../../utils/link/shortenLink"
-import {getAuthUserDataTC} from "../../../../store/reducers/auth-reducer/auth-reducer";
-import {changeFollowingStatusTC} from "../../../../store/reducers/users-reducer/users-reducer";
-import {UserType} from "../../../../api/users-api";
+import {selectProfileLoading} from "../../../../store/profile/profile-selectors";
+import {selectFollowingInProgress, selectUsers} from "../../../../store/users/users-selectors";
+import {changeFollowingStatusTC} from "../../../../store/users/users-thunks";
+import {useFetchProfile} from "./useFetchProfile";
 
 const ProfileInfo = () => {
     const {userId} = useParams()
-
-    const profile = useSelector<RootStateType, ProfileResponseType | null>(state => state.profilePage.profile)
-    const isLoading = useSelector<RootStateType, boolean>(state => state.profilePage.isLoading)
-    const followingInProgress = useSelector<RootStateType, number[]>(state => state.usersPage.followingInProgress)
-    const users = useSelector<RootStateType, UserType[]>(state => state.usersPage.users)
+    const {profile} = useFetchProfile(userId)
     const dispatch = useAppDispatch()
-    useEffect(() => {
-        userId
-            ? dispatch(getUserProfileTC(Number(userId)))
-            : dispatch(getAuthUserDataTC())
-    }, [userId])
 
+    const isLoading = useSelector(selectProfileLoading)
+    const followingInProgress = useSelector(selectFollowingInProgress)
+    const users = useSelector(selectUsers)
 
     const changeSubscriptionStatus = () => {
         profile && dispatch(changeFollowingStatusTC(profile.userId))
@@ -72,7 +64,6 @@ const ProfileInfo = () => {
                                 :
                                 null
                             }
-
                         </div>
                     </div>
                     <div className={s.profile_main}>

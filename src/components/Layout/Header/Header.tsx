@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Header.module.css'
 import {useSelector} from "react-redux";
-import {RootStateType} from "../../../store/reducers/rootReducer";
+import {RootStateType} from "../../../store/rootReducer";
 import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
 import {Link} from "react-router-dom";
 

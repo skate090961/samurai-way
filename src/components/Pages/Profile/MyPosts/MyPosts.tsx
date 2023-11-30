@@ -1,18 +1,14 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {
-    addPostAC,
-    PostsType,
-    updateNewPostTextAC
-} from "../../../../store/reducers/profile-reducer/profile-reducer";
+import {addPostAC, updateNewPostTextAC} from "../../../../store/profile/profile-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {RootStateType} from "../../../../store/reducers/rootReducer";
+import {selectNewPostText, selectPosts} from "../../../../store/profile/profile-selectors";
 
 const MyPosts = () => {
     const dispatch = useDispatch()
-    const posts = useSelector<RootStateType, PostsType[]>(state => state.profilePage.posts)
-    const newPostText = useSelector<RootStateType, string>(state => state.profilePage.newPostText)
+    const posts = useSelector(selectPosts)
+    const newPostText = useSelector(selectNewPostText)
 
     const addPostHandler = () => {
         dispatch(addPostAC())

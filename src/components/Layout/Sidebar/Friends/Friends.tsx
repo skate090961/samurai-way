@@ -2,13 +2,10 @@ import React from 'react';
 import s from './Friends.module.css'
 import Friend from "./Friend/Friend";
 import {useSelector} from "react-redux";
-import {FriendsType} from "../../../../store/reducers/sidebar-reducer/sidebar-reducer";
-import {RootStateType} from "../../../../store/reducers/rootReducer";
+import {selectSidebarFriends} from "../../../../store/sidebar/sidebar-selectors";
 
-type FriendsPropsType = {}
-
-const Friends: React.FC<FriendsPropsType> = ({}) => {
-    const friends = useSelector<RootStateType, FriendsType[]>(state => state.sidebar.friends)
+const Friends = () => {
+    const friends = useSelector(selectSidebarFriends)
 
     const friendsList = friends.map(f =>
         <Friend

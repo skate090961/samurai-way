@@ -1,5 +1,4 @@
 import React from 'react'
-import {changeFollowingStatusTC} from "../../../../store/reducers/users-reducer/users-reducer"
 import s from './User.module.css'
 import userPhoto from "../../../../assets/images/user-avatar-default.jpg"
 import {UserType} from "../../../../api/users-api"
@@ -7,7 +6,8 @@ import {Link} from "react-router-dom"
 import FollowButton from "../../../UI/FollowButton/FollowButton"
 import {useAppDispatch} from "../../../../store/store";
 import {useSelector} from "react-redux";
-import {RootStateType} from "../../../../store/reducers/rootReducer";
+import {RootStateType} from "../../../../store/rootReducer";
+import {changeFollowingStatusTC} from "../../../../store/users/users-thunks";
 
 type UserPropsType = {
     user: UserType

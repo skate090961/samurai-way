@@ -1,6 +1,5 @@
-import {getRefactorDateAndTime} from "../../../utils/date/getRefactorDateAndTime"
-import {profileAPI, ProfileResponseType} from "../../../api/profile-api"
-import {Dispatch} from "redux"
+import {getRefactorDateAndTime} from "../../utils/date/getRefactorDateAndTime"
+import {ProfileResponseType} from "../../api/profile-api"
 
 const initialState: ProfilePageType = {
     posts: [
@@ -71,16 +70,3 @@ export const setUserProfileAC = (profile: ProfileResponseType) =>
     ({type: 'SET-USER-PROFILE', profile} as const)
 export const toggleProfileLoadingAC = (isLoading: boolean) =>
     ({type: 'TOGGLE-PROFILE-LOADING', isLoading} as const)
-
-//thunk
-export const getUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {
-    dispatch(toggleProfileLoadingAC(true))
-    try {
-        if (userId) {
-            const profile = await profileAPI.getUserProfile(userId)
-            dispatch(setUserProfileAC(profile))
-        }
-    } finally {
-        dispatch(toggleProfileLoadingAC(false))
-    }
-}
