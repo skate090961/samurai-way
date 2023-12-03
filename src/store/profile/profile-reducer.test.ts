@@ -9,7 +9,8 @@ test('post should be added to the array correctly', () => {
         ],
         newPostText: 'text4',
         profile: null,
-        isLoading: false
+        isLoading: false,
+        status: ''
     }
     const endState = profileReducer(startState, addPostAC())
 
@@ -31,7 +32,8 @@ test('post should be changed correct', () => {
         ],
         newPostText: '',
         profile: null,
-        isLoading: false
+        isLoading: false,
+        status: ''
     }
     const endState = profileReducer(startState, updateNewPostTextAC(text))
 

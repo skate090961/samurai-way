@@ -1,9 +1,10 @@
-import React from 'react';
+import React from 'react'
 import s from './Header.module.css'
-import {useSelector} from "react-redux";
-import {RootStateType} from "../../../store/rootReducer";
-import ProfileDropdown from "./ProfileDropdown/ProfileDropdown";
-import {Link} from "react-router-dom";
+import {useSelector} from "react-redux"
+import {RootStateType} from "../../../store/rootReducer"
+import ProfileDropdown from "./ProfileDropdown/ProfileDropdown"
+import {Link} from "react-router-dom"
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect"
 
 const Header = () => {
     const isAuth = useSelector<RootStateType, boolean>(state => state.auth.isAuth)
@@ -24,7 +25,7 @@ const Header = () => {
                 }
             </div>
         </header>
-    );
-};
+    )
+}
 
-export default Header;
+export default withAuthRedirect(Header)

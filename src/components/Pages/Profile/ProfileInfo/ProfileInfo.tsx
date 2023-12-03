@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from "./ProfileInfo.module.css"
 import {useParams} from "react-router-dom"
 import {useAppDispatch} from "../../../../store/store"
@@ -8,20 +8,40 @@ import FollowButton from "../../../UI/FollowButton/FollowButton"
 import MessageButton from "../../../UI/MessageButton/MessageButton"
 import ProfileSkeleton from "./ProfileSkeleton"
 import shortenLink from "../../../../utils/link/shortenLink"
-import {selectProfileLoading} from "../../../../store/profile/profile-selectors";
+import {selectProfileLoading, selectStatus} from "../../../../store/profile/profile-selectors";
 import {selectFollowingInProgress, selectUsers} from "../../../../store/users/users-selectors";
 import {changeFollowingStatusTC} from "../../../../store/users/users-thunks";
 import {useFetchProfile} from "./useFetchProfile";
+import {setUserProfileAC} from "../../../../store/profile/profile-reducer";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import {selectAuthUserData} from "../../../../store/auth/auth-selectors";
+import {fetchStatusTC, getUserProfileTC} from "../../../../store/profile/profile-thunk";
 
 const ProfileInfo = () => {
     const {userId} = useParams()
+    const status = useSelector(selectStatus)
+    const authUser = useSelector(selectAuthUserData)
+
+    //статусы и запросы на сервер
+    //дизейбл поля при апдейте статуса
+    useEffect(() => {
+        if (!userId) {
+            dispatch(fetchStatusTC(Number(authUser.id)))
+        } else {
+            dispatch(fetchStatusTC(Number(userId)))
+        }
+    }, [status, userId])
+
     const {profile} = useFetchProfile(userId)
     const dispatch = useAppDispatch()
-
+    useEffect(() => {
+        return () => {
+            dispatch(setUserProfileAC(null))
+        }
+    }, [])
     const isLoading = useSelector(selectProfileLoading)
     const followingInProgress = useSelector(selectFollowingInProgress)
     const users = useSelector(selectUsers)
-
     const changeSubscriptionStatus = () => {
         profile && dispatch(changeFollowingStatusTC(profile.userId))
     }
@@ -50,7 +70,12 @@ const ProfileInfo = () => {
                         <div className={s.profile_container}>
                             <div className={s.profile_short_info}>
                                 <span className={s.user_name}>{profile.fullName}</span>
-                                <span>Status</span>
+                                {!userId
+                                    ?
+                                    <ProfileStatus status={status}/>
+                                    :
+                                    <span>{status}</span>
+                                }
                             </div>
                             {userId
                                 ?

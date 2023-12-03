@@ -18,7 +18,8 @@ const initialState: ProfilePageType = {
     ],
     newPostText: '',
     profile: null,
-    isLoading: false
+    isLoading: false,
+    status: ''
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
@@ -37,6 +38,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, profile: action.profile}
         case 'TOGGLE-PROFILE-LOADING':
             return {...state, isLoading: action.isLoading}
+        case "SET-PROFILE-STATUS":
+            return {...state, status: action.status}
         default:
             return state
     }
@@ -54,19 +57,23 @@ export type ProfilePageType = {
     newPostText: string
     profile: ProfileResponseType | null
     isLoading: boolean
+    status: string
 }
 
 type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof toggleProfileLoadingAC>
+    | ReturnType<typeof setStatusAC>
 
 //action
 export const addPostAC = () =>
     ({type: 'ADD-POST'} as const)
 export const updateNewPostTextAC = (newText: string) =>
     ({type: 'UPDATE-NEW-POST-TEXT', newText} as const)
-export const setUserProfileAC = (profile: ProfileResponseType) =>
+export const setUserProfileAC = (profile: ProfileResponseType | null) =>
     ({type: 'SET-USER-PROFILE', profile} as const)
 export const toggleProfileLoadingAC = (isLoading: boolean) =>
     ({type: 'TOGGLE-PROFILE-LOADING', isLoading} as const)
+export const setStatusAC = (status: string) =>
+    ({type: 'SET-PROFILE-STATUS', status} as const)

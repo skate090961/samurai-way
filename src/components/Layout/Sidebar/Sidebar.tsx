@@ -1,17 +1,19 @@
-import React from 'react';
+import React from 'react'
 import s from './Sidebar.module.css'
-import Navbar from "./Navbar/Navbar";
-import Friends from "./Friends/Friends";
+import Navbar from "./Navbar/Navbar"
+import Friends from "./Friends/Friends"
+import {useSelector} from "react-redux"
+import {selectIsAuth} from "../../../store/auth/auth-selectors"
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
-type SidebarPropsType = {}
-
-const Sidebar: React.FC<SidebarPropsType> = ({}) => {
+const Sidebar = () => {
+    const isAuth = useSelector(selectIsAuth)
     return (
         <div className={s.sidebar}>
             <Navbar/>
-            <Friends/>
+            {isAuth && <Friends/>}
         </div>
-    );
-};
+    )
+}
 
-export default Sidebar;
+export default withAuthRedirect(Sidebar)

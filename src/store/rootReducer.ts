@@ -4,6 +4,7 @@ import {profileReducer} from "./profile/profile-reducer"
 import {sidebarReducer} from "./sidebar/sidebar-reducer"
 import {usersReducer} from "./users/users-reducer"
 import {authReducer} from "./auth/auth-reducer";
+import {appReducer} from "./app/app-reducer";
 
 export type RootStateType = ReturnType<typeof rootReducer>
 
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     profilePage: profileReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    app: appReducer
 })
 
 export default rootReducer

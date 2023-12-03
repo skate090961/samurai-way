@@ -6,8 +6,9 @@ import {Link} from "react-router-dom"
 import FollowButton from "../../../UI/FollowButton/FollowButton"
 import {useAppDispatch} from "../../../../store/store";
 import {useSelector} from "react-redux";
-import {RootStateType} from "../../../../store/rootReducer";
 import {changeFollowingStatusTC} from "../../../../store/users/users-thunks";
+import {selectFollowingInProgress} from "../../../../store/users/users-selectors";
+import {selectIsAuth} from "../../../../store/auth/auth-selectors";
 
 type UserPropsType = {
     user: UserType
@@ -16,7 +17,8 @@ type UserPropsType = {
 const User: React.FC<UserPropsType> = ({
                                            user
                                        }) => {
-    const followingInProgress = useSelector<RootStateType, number[]>(state => state.usersPage.followingInProgress)
+    const isAuth = useSelector(selectIsAuth)
+    const followingInProgress = useSelector(selectFollowingInProgress)
     const dispatch = useAppDispatch()
     const {photos, followed, status, name} = user
     const {large} = photos
@@ -36,11 +38,11 @@ const User: React.FC<UserPropsType> = ({
                 <span className={s.user__status}>{status}</span>
             </div>
             <div className={s.user__button_container}>
-                <FollowButton
+                {isAuth && <FollowButton
                     followed={followed}
                     callback={changeSubscriptionStatus}
                     disabled={isFollowButtonDisabled}
-                />
+                />}
             </div>
         </li>
     )

@@ -5,6 +5,7 @@ import MyMessage from "./Message/MyMessage/MyMessage";
 import MessageSenderContainer from "../MessageSender/MessageSenderContainer";
 import {useSelector} from "react-redux";
 import {selectMessages} from "../../../../store/message/message-selectors";
+import {withAuthRedirect} from "../../../../hoc/withAuthRedirect";
 
 const Messages = () => {
     const messages = useSelector(selectMessages)
@@ -40,4 +41,4 @@ const Messages = () => {
     );
 };
 
-export default Messages;
+export default withAuthRedirect(Messages)
