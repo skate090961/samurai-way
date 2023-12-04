@@ -1,26 +1,40 @@
 import {AppDispatch} from "../store";
-import {setUserProfileAC, toggleProfileLoadingAC} from "../profile/profile-reducer";
-import {authAPI} from "../../api/auth-api";
-import {profileAPI} from "../../api/profile-api";
-import {setAuthUserDataAC} from "./auth-reducer";
+import {authAPI, LoginParamsType} from "../../api/auth-api";
+import {setIsAuthAC} from "./auth-reducer";
 import {handleServerAppError} from "../../utils/handle-errors/handleServerAppError";
 import {handleServerNetworkError} from "../../utils/handle-errors/handleServerNetworkError";
 import {AxiosError} from "axios";
+import {Dispatch} from "redux";
+import {setAppInitializedAC, setAppStatusAC} from "../app/app-reducer";
+import {setAppInitializedTC} from "../app/app-thunk";
 
-export const getAuthUserDataTC = () => async (dispatch: AppDispatch) => {
-    dispatch(toggleProfileLoadingAC(true))
+export const loginTC = (login: LoginParamsType) => async (dispatch: AppDispatch) => {
+    dispatch(setAppStatusAC('loading'))
     try {
-        const authUser = await authAPI.getAuthMe()
-        if (authUser.resultCode === 0) {
-            const userProfile = await profileAPI.getUserProfile(Number(authUser.data.id))
-            dispatch(setAuthUserDataAC(authUser.data, userProfile.photos))
-            dispatch(setUserProfileAC(userProfile))
-            dispatch(toggleProfileLoadingAC(false))
+        const response = await authAPI.login(login)
+        if (response.resultCode === 0) {
+            dispatch(setAppInitializedAC(false))
+            dispatch(setAppInitializedTC())
+            dispatch(setAppStatusAC('succeeded'))
         } else {
-            handleServerAppError(authUser, dispatch)
+            handleServerAppError(response, dispatch)
         }
     } catch (e) {
         handleServerNetworkError((e as AxiosError), dispatch)
     }
+}
 
+export const logoutTC = () => async (dispatch: Dispatch) => {
+    dispatch(setAppStatusAC('loading'))
+    try {
+        const response = await authAPI.logout()
+        if (response.resultCode === 0) {
+            dispatch(setIsAuthAC(false))
+            dispatch(setAppStatusAC('succeeded'))
+        } else {
+            handleServerAppError(response, dispatch)
+        }
+    } catch (e) {
+        handleServerNetworkError((e as AxiosError), dispatch)
+    }
 }

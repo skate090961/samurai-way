@@ -1,20 +1,36 @@
 import {axiosInstance} from "./axiosInstance";
+import {AxiosResponse} from "axios";
 
 export const authAPI = {
-    async getAuthMe(): Promise<AuthResponseType> {
-        const authMe = await axiosInstance.get('/auth/me')
-        return authMe.data
+    async me() {
+        const response: AxiosResponse<ResponseType<AuthMeDataType>> = await axiosInstance.get('auth/me')
+        return response.data
+    },
+    async login(login: LoginParamsType) {
+        const response: AxiosResponse<ResponseType<{ userId: number }>> =
+            await axiosInstance.post('auth/login', login)
+        return response.data
+    },
+    async logout() {
+        const response: AxiosResponse<ResponseType> = await axiosInstance.delete('auth/login')
+        return response.data
     }
 }
 
 //types
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: boolean
+}
 export type AuthMeDataType = {
     id: number | null
     email: string | null
     login: string | null
 }
-type AuthResponseType = {
-    data: AuthMeDataType
+type ResponseType<T = {}> = {
+    data: T
     resultCode: number
     messages: string[]
 }

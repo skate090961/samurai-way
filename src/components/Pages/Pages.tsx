@@ -30,7 +30,8 @@ const Pages = () => {
             <Route path={PATH.SETTINGS} element={<Settings/>}></Route>
             <Route path={PATH.USERS} element={<Users/>}></Route>
             <Route path={PATH.LOGIN} element={<LoginPage/>}></Route>
-            <Route path={'*'} element={<div>Not Found Page</div>}></Route>
+            <Route path={'404'} element={<div>Not Found Page</div>}></Route>
+            <Route path={'*'} element={<Navigate to={'404'}/>}></Route>
         </Routes>
     );
 };

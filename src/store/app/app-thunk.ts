@@ -1,17 +1,20 @@
 import {authAPI} from "../../api/auth-api";
-import {setIsAuthAC} from "../auth/auth-reducer";
+import {setAuthUserDataAC, setIsAuthAC} from "../auth/auth-reducer";
 import {setAppInitializedAC} from "./app-reducer";
-import {getAuthUserDataTC} from "../auth/auth-thunk";
 import {AppDispatch} from "../store";
 import {handleServerNetworkError} from "../../utils/handle-errors/handleServerNetworkError";
 import {AxiosError} from "axios";
 import {handleServerAppError} from "../../utils/handle-errors/handleServerAppError";
+import {profileAPI} from "../../api/profile-api";
+import {setUserProfileAC} from "../profile/profile-reducer";
 
 export const setAppInitializedTC = () => async (dispatch: AppDispatch) => {
     try {
-        const res = await authAPI.getAuthMe()
+        const res = await authAPI.me()
         if (res.resultCode === 0) {
-            await dispatch(getAuthUserDataTC())
+            const userProfile = await profileAPI.getUserProfile(Number(res.data.id))
+            dispatch(setAuthUserDataAC(res.data, userProfile.photos))
+            dispatch(setUserProfileAC(userProfile))
             dispatch(setIsAuthAC(true))
         } else {
             dispatch(setIsAuthAC(false))

@@ -1,19 +1,17 @@
 import React from 'react'
-import {useAppDispatch} from "../../../store/store";
-import {getAuthUserDataTC} from "../../../store/auth/auth-thunk";
-import {useSelector} from "react-redux";
-import {selectIsAuth} from "../../../store/auth/auth-selectors";
+import {useSelector} from "react-redux"
+import {selectIsAuth} from "../../../store/auth/auth-selectors"
+import {LoginForm} from "./LoginForm/LoginForm"
+import s from './Login.module.css'
 import {Navigate} from "react-router-dom";
 
 const Login = () => {
-    const clickHandler = () => dispatch(getAuthUserDataTC())
-    const dispatch = useAppDispatch()
     const isAuth = useSelector(selectIsAuth)
 
-    if (isAuth) return <Navigate to={'/'}/>
+    if (isAuth) return <Navigate to={'/profile'}/>
     return (
-        <div>
-            <button onClick={clickHandler}>LOG IN</button>
+        <div className={s.login}>
+            <LoginForm/>
         </div>
     )
 }

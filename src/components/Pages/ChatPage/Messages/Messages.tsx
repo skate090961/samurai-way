@@ -26,7 +26,7 @@ const Messages = () => {
                      alt="friend_avatar"
                 />
                 <div className={s.messages_friendInfo}>
-                    <span className={s.messages__header__name}>Artem Moiseev</span>
+                    <span className={s.messages__header__name}>Ivan Ivanov</span>
                     <span className={s.messages__header__status}>offline</span>
                 </div>
             </div>

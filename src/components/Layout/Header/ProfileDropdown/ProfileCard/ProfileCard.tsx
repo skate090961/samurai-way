@@ -6,6 +6,8 @@ import {Link} from "react-router-dom";
 import {IoSettingsOutline} from "react-icons/io5";
 import {FaPowerOff} from "react-icons/fa6";
 import {AuthMeDataExtendsType} from "../../../../../store/auth/auth-reducer";
+import {logoutTC} from "../../../../../store/auth/auth-thunk";
+import {useAppDispatch} from "../../../../../store/store";
 
 type ProfileCardPropsType = {
     profile: AuthMeDataExtendsType
@@ -16,7 +18,11 @@ const ProfileCard: React.FC<ProfileCardPropsType> = ({
                                                          profile,
                                                          setIsShowCard
                                                      }) => {
-    const closeCardHandler = () => setIsShowCard(false)
+    const dispatch = useAppDispatch()
+    const closeCardHandler = () => {
+        dispatch(logoutTC())
+        setIsShowCard(false)
+    }
 
     return (
         <div className={s.profile_card}>

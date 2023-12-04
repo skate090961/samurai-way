@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
-import {selectErrorMessage} from "../../store/app/app-selectors"
-import {setAppErrorAC} from "../../store/app/app-reducer"
-import {useSelector} from "react-redux"
-import {useAppDispatch} from "../../store/store"
-import {toast, ToastContainer} from "react-toastify"
+import {selectErrorMessage} from "../../store/app/app-selectors";
+import {useSelector} from "react-redux";
+import {useAppDispatch} from "../../store/store";
+import {useEffect} from "react";
+import {toast, ToastContainer} from "react-toastify";
+import {setAppErrorAC} from "../../store/app/app-reducer";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const GlobalError = () => {
     const errorMessage = useSelector(selectErrorMessage)
@@ -16,6 +17,6 @@ export const GlobalError = () => {
         }
     }, [errorMessage])
 
-    return <ToastContainer theme="dark" autoClose={3000} />
+    return <ToastContainer theme="colored" autoClose={5000} position="bottom-left"/>
 }
 

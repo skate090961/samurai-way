@@ -1,9 +1,11 @@
 import React from 'react';
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
-import {LinearLoader} from "../LinearLoader/LinearLoader";
+import {LinearLoader} from "../Loaders/LinearLoader/LinearLoader";
 import {useSelector} from "react-redux";
 import {selectAppStatus} from "../../store/app/app-selectors";
+import {GlobalError} from "../../app/GlobalError/GlobalError";
+import {ToastContainer} from "react-toastify";
 
 type LayoutPropsType = {
 }

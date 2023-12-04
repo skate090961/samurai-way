@@ -4,7 +4,6 @@ import Navbar from "./Navbar/Navbar"
 import Friends from "./Friends/Friends"
 import {useSelector} from "react-redux"
 import {selectIsAuth} from "../../../store/auth/auth-selectors"
-import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 const Sidebar = () => {
     const isAuth = useSelector(selectIsAuth)
@@ -16,4 +15,4 @@ const Sidebar = () => {
     )
 }
 
-export default withAuthRedirect(Sidebar)
+export default Sidebar

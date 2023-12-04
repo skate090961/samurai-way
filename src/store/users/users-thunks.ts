@@ -12,6 +12,7 @@ import {
 import {handleServerNetworkError} from "../../utils/handle-errors/handleServerNetworkError";
 import {AxiosError} from "axios";
 import {handleServerAppError} from "../../utils/handle-errors/handleServerAppError";
+import {setAppStatusAC} from "../app/app-reducer";
 
 export const setUsersTC = () => async (dispatch: Dispatch, getState: () => RootStateType) => {
     dispatch(toggleUserLoadingAC(true))
@@ -28,6 +29,7 @@ export const setUsersTC = () => async (dispatch: Dispatch, getState: () => RootS
 }
 
 export const changeFollowingStatusTC = (userId: number) => async (dispatch: Dispatch) => {
+    dispatch(setAppStatusAC('loading'))
     dispatch(toggleFollowingProgressAC(true, userId))
     const isUserFollow = await followAPI.getFollow(userId)
     try {
@@ -35,11 +37,13 @@ export const changeFollowingStatusTC = (userId: number) => async (dispatch: Disp
         isUserFollow ? followStatus = await followAPI.unFollow(userId) : followStatus = await followAPI.follow(userId)
         if (followStatus.resultCode === 0) {
             dispatch(changeFollowingStatusAC(userId, !isUserFollow))
-            dispatch(toggleFollowingProgressAC(false, userId))
+            dispatch(setAppStatusAC('succeeded'))
         } else {
             handleServerAppError(followStatus, dispatch)
         }
     } catch (e) {
         handleServerNetworkError((e as AxiosError), dispatch)
+    } finally {
+        dispatch(toggleFollowingProgressAC(false, userId))
     }
 }

@@ -4,8 +4,8 @@ import ContentLoader from "react-content-loader"
 const UserSkeleton = (props: any) => (
     <ContentLoader
         speed={2}
-        width={280}
-        height={405}
+        width={291}
+        height={371}
         viewBox="0 0 280 388"
         backgroundColor="#dde1e9"
         foregroundColor="#ffffff"

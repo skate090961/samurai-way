@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import s from "./NavbarItem.module.css";
 import {NavLink} from "react-router-dom";
 
@@ -8,22 +8,21 @@ type IsActiveType = {
 
 type MenuItemPropsType = {
     pathTo: string
-    src: string
+    src: string | ReactNode
     title: string
 }
 
 const NavbarItem: React.FC<MenuItemPropsType> = ({
-                                                   pathTo,
-                                                   src,
-                                                   title
-                                               }) => {
+                                                     pathTo,
+                                                     src,
+                                                     title
+                                                 }) => {
     const setActive = ({isActive}: IsActiveType) => isActive ? `${s.menuItem__link} ${s.menuItem__link_active}` : s.menuItem__link
 
     return (
         <li className={s.menuItem__item}>
             <NavLink className={setActive} to={pathTo}>
-                <img className={s.menuItem__icon} src={src}
-                     alt={title}/>
+                {src}
                 <span className={s.menuItem__text}>{title}</span>
             </NavLink>
         </li>
