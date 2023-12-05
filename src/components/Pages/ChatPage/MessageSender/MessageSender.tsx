@@ -1,34 +1,28 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './MessageSender.module.css'
 
 type MessageSenderPropsType = {
-    messageText: string
-    updateMessageText: (text: string) => void
-    addMessage: () => void
+
 }
 
-const MessageSender: React.FC<MessageSenderPropsType> = ({
-                                                             messageText,
-                                                             updateMessageText,
-                                                             addMessage
-                                                         }) => {
-    const onMessageChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        updateMessageText(e.currentTarget.value)
-    }
-    const addNewMessageHandler = () => {
-        addMessage()
-    }
+const MessageSender = () => {
+    // const onMessageChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    //     updateMessageText(e.currentTarget.value)
+    // }
+    // const addNewMessageHandler = () => {
+    //     addMessage()
+    // }
     return (
         <div className={s.sender__form}>
             <input
-                value={messageText}
+                value={''}
                 className={s.sender__input}
                 placeholder={'Type your message here'}
-                onChange={onMessageChangeHandler}
+                onChange={() => {}}
             />
             <button
                 className={s.sender__button}
-                onClick={addNewMessageHandler}
+                onClick={() => {}}
             >Send
             </button>
         </div>

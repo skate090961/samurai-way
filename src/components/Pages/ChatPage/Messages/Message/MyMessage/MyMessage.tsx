@@ -1,29 +1,28 @@
 import React from 'react';
 import s from './MyMessage.module.css'
+import {MessageType} from "../../../../../../api/dialogs-api";
+import defaultAvatar from '../../../../../../assets/images/user-avatar-default.jpg'
 
 type MyMessagePropsType = {
-    id?: string
-    message?: string
-    avatar?: string
-    time?: string
+    message: MessageType
+    photo: string | null
 }
 
 const MyMessage: React.FC<MyMessagePropsType> = ({
-                                                       id,
-                                                       message,
-                                                       avatar,
-                                                     time
+                                                     message,
+                                                     photo
                                                    }) => {
+    const {body, addedAt} = message
     return (
         <li className={s.myMessage__item}>
             <img className={s.myMessage__item__avatar}
-                 src="https://avataaars.io/?avatarStyle=Circle&amp;topType=ShortHairShortWaved&amp;accessoriesType=Prescription02&amp;hairColor=Platinum&amp;facialHairType=BeardMajestic&amp;facialHairColor=BrownDark&amp;clotheType=BlazerSweater&amp;eyeType=Happy&amp;eyebrowType=Default&amp;mouthType=Smile&amp;skinColor=Tanned"
+                 src={photo || defaultAvatar}
                  alt="friend_avatar"/>
             <div className={s.myMessage__message}>
                                 <span className={s.myMessage__text}>
-                                    {message}
+                                    {body}
                                 </span>
-                <span className={s.myMessage__time}>{time}</span>
+                <span className={s.myMessage__time}>{addedAt}</span>
             </div>
         </li>
     );

@@ -12,7 +12,7 @@ const Pages = () => {
     const PATH = {
         ROOT: '/',
         PROFILE: 'profile/:userId?',
-        DIALOGS: 'dialogs/*',
+        DIALOGS: 'dialogs/:id?',
         NEWS: 'news',
         MUSIC: 'music',
         SETTINGS: 'settings',

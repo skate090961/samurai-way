@@ -19,7 +19,8 @@ const initialState: ProfilePageType = {
     newPostText: '',
     profile: null,
     isLoading: false,
-    status: ''
+    status: '',
+    isFollow: false,
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes): ProfilePageType => {
@@ -40,6 +41,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, isLoading: action.isLoading}
         case "SET-PROFILE-STATUS":
             return {...state, status: action.status}
+        case "SET-IS-FOLLOW":
+            return {...state, isFollow: action.isFollowed}
         default:
             return state
     }
@@ -58,6 +61,7 @@ export type ProfilePageType = {
     profile: ProfileResponseType | null
     isLoading: boolean
     status: string
+    isFollow: boolean
 }
 
 type ActionsTypes = ReturnType<typeof addPostAC>
@@ -65,6 +69,7 @@ type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof toggleProfileLoadingAC>
     | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof setIsFollowAC>
 
 //action
 export const addPostAC = () =>
@@ -77,3 +82,5 @@ export const toggleProfileLoadingAC = (isLoading: boolean) =>
     ({type: 'TOGGLE-PROFILE-LOADING', isLoading} as const)
 export const setStatusAC = (status: string) =>
     ({type: 'SET-PROFILE-STATUS', status} as const)
+export const setIsFollowAC = (isFollowed: boolean) =>
+    ({type: 'SET-IS-FOLLOW', isFollowed} as const)

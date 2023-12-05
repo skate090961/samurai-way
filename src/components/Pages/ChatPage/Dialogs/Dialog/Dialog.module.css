@@ -9,7 +9,7 @@
 .dialog__link {
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 10px;
     color: #222222;
     padding: 20px 0;
 }

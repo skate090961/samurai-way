@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from './Users.module.css'
-import {setCurrentPageAC} from "../../../store/users/users-reducer"
+import {setCurrentPageAC, setUsersAC} from "../../../store/users/users-reducer"
 import User from "./User/User"
 import {useSelector} from "react-redux"
 import Pagination from "../../Pagination/Pagination"
@@ -18,14 +18,19 @@ const Users = () => {
     const dispatch = useAppDispatch()
     const pageSize = useSelector(selectUsersPageSize)
     const currentPage = useSelector(selectUsersCurrentPage)
-    const {users} = useFetchUsers(currentPage)
+    const {users, isShowPagination} = useFetchUsers(currentPage)
     const totalUsersCount = useSelector(selectTotalUsersCount)
     const isLoading = useSelector(selectUsersLoading)
+
+    useEffect(() => {
+        return () => {
+            dispatch(setUsersAC([]))
+        }
+    }, [])
 
     const setCurrentPage = (currentPage: number) => dispatch(setCurrentPageAC(currentPage))
     const usersList = users.map(u => <User key={u.id} user={u}/>)
     const totalPagesCount = Math.ceil(totalUsersCount / pageSize)
-    const isShowPagination = totalPagesCount >= 2
     const isShowSkeleton = isLoading ? <UsersSkeleton pageSize={pageSize}/> : usersList
 
     return (

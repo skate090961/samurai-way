@@ -1,11 +1,12 @@
 import React from 'react'
 import s from './MessageButton.module.css'
+import {Link} from "react-router-dom";
 
-const MessageButton = () => {
+const MessageButton = ({userId}: {userId: string}) => {
     return (
-        <button className={s.button_message}>
+        <Link to={`/dialogs/${userId}`} className={s.button_message}>
             Message
-        </button>
+        </Link>
     )
 }
 

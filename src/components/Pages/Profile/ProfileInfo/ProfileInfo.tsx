@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import s from "./ProfileInfo.module.css"
 import {useParams} from "react-router-dom"
 import {useAppDispatch} from "../../../../store/store"
@@ -9,15 +9,15 @@ import MessageButton from "../../../UI/MessageButton/MessageButton"
 import ProfileSkeleton from "./ProfileSkeleton"
 import shortenLink from "../../../../utils/link/shortenLink"
 import {selectProfileLoading} from "../../../../store/profile/profile-selectors";
-import {selectFollowingInProgress, selectUsers} from "../../../../store/users/users-selectors";
-import {changeFollowingStatusTC} from "../../../../store/users/users-thunks";
+import {toggleFollowTC} from "../../../../store/users/users-thunks";
 import {useFetchProfile} from "./useFetchProfile";
 import {setUserProfileAC} from "../../../../store/profile/profile-reducer";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const ProfileInfo = () => {
+    const [isFollowDisable, setIsFollowDisable] = useState<boolean>(false)
     const {userId} = useParams()
-    const {profile, status} = useFetchProfile(userId)
+    const {profile, status, isFollow} = useFetchProfile(userId)
     const dispatch = useAppDispatch()
     useEffect(() => {
         return () => {
@@ -25,16 +25,11 @@ const ProfileInfo = () => {
         }
     }, [])
     const isLoading = useSelector(selectProfileLoading)
-    const followingInProgress = useSelector(selectFollowingInProgress)
-    const users = useSelector(selectUsers)
     const changeSubscriptionStatus = () => {
-        profile && dispatch(changeFollowingStatusTC(profile.userId))
+        setIsFollowDisable(true)
+        profile && dispatch(toggleFollowTC(profile.userId))
+            .finally(() => setIsFollowDisable(false))
     }
-
-    const findUser = profile && users.find(u => u.id === profile.userId)
-    const isFollow = findUser ? findUser.followed : false
-
-    const isFollowButtonDisabled = findUser ? followingInProgress.some(id => id === findUser.id) : true
     const contactsListRender = profile && Object.entries(profile.contacts).map(([key, value]) => (<li key={key}>
             <span className={s.header}>{key}: </span>
             <a href={value} className={s.contact_link}>{value ? shortenLink(value) :
@@ -67,8 +62,8 @@ const ProfileInfo = () => {
                                     <FollowButton
                                         followed={isFollow}
                                         callback={changeSubscriptionStatus}
-                                        disabled={isFollowButtonDisabled}/>
-                                    <MessageButton/>
+                                        disabled={isFollowDisable}/>
+                                    <MessageButton userId={userId}/>
                                 </div>
                                 :
                                 null

@@ -1,18 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react'
 import s from './Dialogs.module.css'
-import Dialog from "./Dialog/Dialog";
-import {useSelector} from "react-redux";
-import {selectDialogs} from "../../../../store/message/message-selectors";
+import Dialog from "./Dialog/Dialog"
+import {useSelector} from "react-redux"
+import {selectDialogs} from "../../../../store/message/message-selectors"
+import {useAppDispatch} from "../../../../store/store"
+import {getDialogsTC} from "../../../../store/message/thunk-message"
+import {selectAuthUserData} from "../../../../store/auth/auth-selectors"
+import defaultAvatar from '../../../../assets/images/user-avatar-default.jpg'
+import {useParams} from "react-router-dom";
 
 const Dialogs = () => {
+    const {id} = useParams()
     const dialogs = useSelector(selectDialogs)
+    console.log(dialogs)
+    const authUser = useSelector(selectAuthUserData)
+    const dispatch = useAppDispatch()
 
-    const dialogsList = dialogs.map(d =>
+    useEffect(() => {
+        dispatch(getDialogsTC())
+    }, [])
+
+    const dialogsList = dialogs.map(dialog =>
         <Dialog
-            id={d.id}
-            key={d.id}
-            name={d.name}
-            avatar={d.avatar}
+            dialog={dialog}
+            key={dialog.id}
         />
     )
 
@@ -20,7 +31,7 @@ const Dialogs = () => {
         <div className={s.dialogs}>
             <div className={s.dialogs__header}>
                 <img className={s.dialogs__avatar}
-                     src="https://avataaars.io/?avatarStyle=Circle&amp;topType=ShortHairShortWaved&amp;accessoriesType=Prescription02&amp;hairColor=Platinum&amp;facialHairType=BeardMajestic&amp;facialHairColor=BrownDark&amp;clotheType=BlazerSweater&amp;eyeType=Happy&amp;eyebrowType=Default&amp;mouthType=Smile&amp;skinColor=Tanned"
+                     src={authUser.photos?.small || defaultAvatar}
                      alt="profile_avatar"/>
                 <span className={s.dialogs__header__span}>Chat</span>
             </div>
@@ -28,7 +39,7 @@ const Dialogs = () => {
                 {dialogsList}
             </ul>
         </div>
-    );
-};
+    )
+}
 
-export default Dialogs;
+export default Dialogs

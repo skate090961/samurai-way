@@ -28,6 +28,7 @@
 .messages__header__name {
     font-weight: bold;
     font-size: 20px;
+    color: #222222;
 }
 
 .messages__header__status {
