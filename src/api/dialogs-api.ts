@@ -10,6 +10,14 @@ export const dialogsAPI = {
     async getMessages(userId: number) {
         const response:AxiosResponse<MessagesResponseType> = await axiosInstance.get(`dialogs/${userId}/messages`)
         return response.data
+    },
+    async updateDialogs(userId: number) {
+        const response:AxiosResponse<ResponseType> = await axiosInstance.put(`dialogs/${userId}`)
+        return response.data
+    },
+    async sendMessage(userId: number, body: string) {
+        const response: AxiosResponse<ResponseType<{message: ExtendedMessageType}>> = await axiosInstance.post(`dialogs/${userId}/messages`, {body})
+        return response.data
     }
 }
 
@@ -38,4 +46,19 @@ export type MessageType = {
     senderName: string
     recipientId: number
     viewed: boolean
+}
+
+export type ExtendedMessageType = MessageType & {
+    recipientName: string
+    deletedBySender: boolean
+    deletedByRecipient: boolean
+    isSpam: boolean,
+    distributionId: null | number
+}
+
+type ResponseType<D = {}> = {
+    data: D,
+    messages: string[]
+    fieldsErrors: string[]
+    resultCode: number
 }

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from "./Messages.module.css";
 import FriendMessage from './Message/FriendMessage/FriendMessage';
 import MyMessage from "./Message/MyMessage/MyMessage";
@@ -12,6 +12,7 @@ import {Link, useParams} from "react-router-dom";
 import defaultAvatar from '../../../../assets/images/user-avatar-default.jpg'
 import {selectAuthUserData} from "../../../../store/auth/auth-selectors";
 import {setMessagesAC} from "../../../../store/message/message-reducer";
+import TailSpinLoader from "../../../Loaders/TailSpinLoader/TailSpinLoader";
 
 const Messages = () => {
     const {id} = useParams()
@@ -20,8 +21,11 @@ const Messages = () => {
     const authUser = useSelector(selectAuthUserData)
     const friend = dialogs.find(dialog => dialog.id === Number(id))
     const dispatch = useAppDispatch()
+    const [isLoader, setIsLoader] = useState<boolean>(false)
     useEffect(() => {
+        setIsLoader(true)
         id && dispatch(getMessagesTC(Number(id)))
+            .finally(() => setIsLoader(false))
     }, [id])
     useEffect(() => {
         return () => {
@@ -45,7 +49,6 @@ const Messages = () => {
             }
         }
     )
-
     return (
         <div className={s.messages}>
             <div className={s.messages__header}>
@@ -61,12 +64,16 @@ const Messages = () => {
                     <span className={s.messages__header__status}>offline</span>
                 </div>
             </div>
-            <div className={s.messages__main}>
-                <ul className={s.messages__list}>
-                    {myMessagesList}
-                </ul>
-                <MessageSender/>
-            </div>
+            <>
+            {isLoader ? <div className={s.loader}><TailSpinLoader/></div> :
+                <div className={s.messages__main}>
+                    <ul className={s.messages__list}>
+                        {myMessagesList}
+                    </ul>
+                    <MessageSender senderId={id || id}/>
+                </div>
+            }
+            </>
         </div>
     );
 };

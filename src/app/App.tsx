@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import {selectIsInitialized} from "../store/app/app-selectors";
 import {GlobalError} from "./GlobalError/GlobalError";
 import TailSpinLoader from "../components/Loaders/TailSpinLoader/TailSpinLoader";
+import s from './App.module.css'
 
 const App = () => {
     const dispatch = useAppDispatch()
@@ -26,7 +27,7 @@ const App = () => {
                     <GlobalError/>
                 </>
                 :
-                <TailSpinLoader/>
+                <div className={s.loading}><TailSpinLoader/></div>
             }
         </>
 

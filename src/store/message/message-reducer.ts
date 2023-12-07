@@ -5,7 +5,7 @@ export type ChatPageType = {
     messages: MessageType[]
     newMessageText: string
 }
-type ActionsTypes = ReturnType<typeof updateNewMessageTextAC>
+type ActionsTypes = ReturnType<typeof updateMessagesAC>
     | ReturnType<typeof setDialogsAC>
     | ReturnType<typeof setMessagesAC>
 
@@ -17,11 +17,12 @@ const initialState: ChatPageType = {
 
 export const messageReducer = (state: ChatPageType = initialState, action: ActionsTypes): ChatPageType => {
     switch (action.type) {
-        case 'UPDATE-NEW-MESSAGE-TEXT':
+        case 'UPDATE-MESSAGES': {
             return {
                 ...state,
-                newMessageText: action.newText
+                messages: [...state.messages, action.message]
             }
+        }
         case "SET-DIALOGS":
             return {
                 ...state,
@@ -37,8 +38,6 @@ export const messageReducer = (state: ChatPageType = initialState, action: Actio
     }
 }
 
-export const updateNewMessageTextAC = (newText: string) => (
-    {type: 'UPDATE-NEW-MESSAGE-TEXT', newText} as const
-)
 export const setDialogsAC = (dialogs: DialogType[]) => ({type: 'SET-DIALOGS', dialogs} as const)
 export const setMessagesAC = (messages: MessageType[]) => ({type: 'SET-MESSAGES', messages} as const)
+export const updateMessagesAC = (message: MessageType) => ({type: 'UPDATE-MESSAGES', message} as const)

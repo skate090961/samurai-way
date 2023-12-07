@@ -3,6 +3,8 @@ import s from "./Dialog.module.css";
 import {NavLink} from "react-router-dom";
 import {DialogType} from "../../../../../api/dialogs-api";
 import defaultAvatar from '../../../../../assets/images/user-avatar-default.jpg'
+import {useSelector} from "react-redux";
+import {selectMessages} from "../../../../../store/message/message-selectors";
 
 type DialogsItemPropsType = {
     dialog: DialogType
@@ -28,7 +30,7 @@ const Dialog: React.FC<DialogsItemPropsType> = ({
                      alt="friend_avatar"/>
                 <div className={s.dialog__container}>
                     <span className={s.dialog__name}>{userName}</span>
-                    <span className={s.dialog__message}>HELLO!!!</span>
+                    <span className={s.dialog__message}>HELLO!</span>
                 </div>
             </NavLink>
         </li>

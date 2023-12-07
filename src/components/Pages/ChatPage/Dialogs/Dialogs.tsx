@@ -4,7 +4,7 @@ import Dialog from "./Dialog/Dialog"
 import {useSelector} from "react-redux"
 import {selectDialogs} from "../../../../store/message/message-selectors"
 import {useAppDispatch} from "../../../../store/store"
-import {getDialogsTC} from "../../../../store/message/thunk-message"
+import {getDialogsTC, updateDialogsTC} from "../../../../store/message/thunk-message"
 import {selectAuthUserData} from "../../../../store/auth/auth-selectors"
 import defaultAvatar from '../../../../assets/images/user-avatar-default.jpg'
 import {useParams} from "react-router-dom";
@@ -12,12 +12,15 @@ import {useParams} from "react-router-dom";
 const Dialogs = () => {
     const {id} = useParams()
     const dialogs = useSelector(selectDialogs)
-    console.log(dialogs)
     const authUser = useSelector(selectAuthUserData)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+        const isDialogId = dialogs.some(dialog => dialog.id === Number(id))
         dispatch(getDialogsTC())
+        if (!isDialogId) {
+            dispatch(updateDialogsTC(Number(id)))
+        }
     }, [])
 
     const dialogsList = dialogs.map(dialog =>
