@@ -3,32 +3,38 @@ import s from './LoginForm.module.css'
 import {SubmitHandler, useForm} from "react-hook-form";
 import {loginTC} from "../../../../store/auth/auth-thunk";
 import {useAppDispatch} from "../../../../store/store";
+import {useSelector} from "react-redux";
+import {selectCaptcha} from "../../../../store/auth/auth-selectors";
+import Captcha from "./Captcha/Captcha";
 
-type LoginFormType = {
+export type LoginFormType = {
     email: string
     password: string
     rememberMe: boolean
+    captcha?: string
 }
 
 export const LoginForm = () => {
+    const captcha = useSelector(selectCaptcha)
     const dispatch = useAppDispatch()
     const defaultValues = {
         email: '',
         password: '',
-        rememberMe: false
+        rememberMe: false,
+        captcha: ''
     }
     const {
         formState,
         register,
         handleSubmit,
+        setError,
         formState: {errors, isValid},
     } = useForm<LoginFormType>({
         defaultValues,
         mode: "onBlur"
     })
     const onSubmit: SubmitHandler<LoginFormType> = async (data, event) => {
-        event?.preventDefault()
-        await dispatch(loginTC(data))
+        await dispatch(loginTC(data, setError))
     }
 
     return (
@@ -58,6 +64,7 @@ export const LoginForm = () => {
                     })}
                 />
                 {errors.password && <p className={s.error_message}>{errors.password.message}</p>}
+                {captcha && <Captcha captcha={captcha} errors={errors} register={register}/>}
             </div>
             <div className={s.checkbox_group}>
                 <input
@@ -68,6 +75,7 @@ export const LoginForm = () => {
                 />
                 <label htmlFor="rememberMe">Remember me</label>
             </div>
+            {errors.root && <div className={s.rootError}>{errors.root?.message}</div>}
             <div>
                 <button
                     type="submit"

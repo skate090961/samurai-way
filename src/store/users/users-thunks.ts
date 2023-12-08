@@ -49,7 +49,7 @@ export const changeFollowingStatusTC = (userId: number) => async (dispatch: Disp
     }
 }
 
-export const getIsFollowTC = (userId: number) => async (dispatch: Dispatch) => {
+export const getFollowedStatusTC = (userId: number) => async (dispatch: Dispatch) => {
     dispatch(setAppStatusAC('loading'))
     try {
         const isUserFollow = await followAPI.getFollow(userId)

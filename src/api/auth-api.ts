@@ -1,4 +1,4 @@
-import {axiosInstance} from "./axiosInstance";
+  import {axiosInstance} from "./axiosInstance";
 import {AxiosResponse} from "axios";
 
 export const authAPI = {
@@ -22,7 +22,7 @@ export type LoginParamsType = {
     email: string
     password: string
     rememberMe: boolean
-    captcha?: boolean
+    captcha?: string
 }
 export type AuthMeDataType = {
     id: number | null
@@ -33,4 +33,5 @@ type ResponseType<T = {}> = {
     data: T
     resultCode: number
     messages: string[]
+    fieldsErrors: {field: string, error: string}[]
 }

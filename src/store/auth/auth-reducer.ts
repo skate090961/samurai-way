@@ -8,7 +8,8 @@ const initialState: AuthType = {
         login: null,
         photos: null
     },
-    isAuth: false
+    isAuth: false,
+    captcha: ''
 }
 
 export const authReducer = (state = initialState, action: ActionsTypes) => {
@@ -18,6 +19,8 @@ export const authReducer = (state = initialState, action: ActionsTypes) => {
             return {...state, authUserData: {...action.authUser, photos: action.photos}, isAuth: true}
         case "SET-IS-AUTH":
             return {...state, isAuth: action.isAuth}
+        case "SET-CAPTCHA":
+            return {...state, captcha: action.url}
         default:
             return state
     }
@@ -26,11 +29,13 @@ export const authReducer = (state = initialState, action: ActionsTypes) => {
 //type
 type ActionsTypes = ReturnType<typeof setAuthUserDataAC>
     | ReturnType<typeof setIsAuthAC>
+    | ReturnType<typeof setCaptchaAC>
 
 export type AuthMeDataExtendsType = AuthMeDataType & { photos: PhotosType | null }
 type AuthType = {
     authUserData: AuthMeDataExtendsType
     isAuth: boolean
+    captcha: string
 }
 
 //action
@@ -38,3 +43,5 @@ export const setAuthUserDataAC = (authUser: AuthMeDataType, photos: PhotosType |
     ({type: 'SET-AUTH-USER-DATA', authUser, photos} as const)
 export const setIsAuthAC = (isAuth: boolean) =>
     ({type: 'SET-IS-AUTH', isAuth} as const)
+export const setCaptchaAC = (url: string) =>
+    ({type: 'SET-CAPTCHA', url} as const)

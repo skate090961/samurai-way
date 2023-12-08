@@ -4,7 +4,6 @@ import {setAppInitializedAC} from "./app-reducer";
 import {AppDispatch} from "../store";
 import {handleServerNetworkError} from "../../utils/handle-errors/handleServerNetworkError";
 import {AxiosError} from "axios";
-import {handleServerAppError} from "../../utils/handle-errors/handleServerAppError";
 import {profileAPI} from "../../api/profile-api";
 import {setUserProfileAC} from "../profile/profile-reducer";
 
@@ -18,7 +17,6 @@ export const setAppInitializedTC = () => async (dispatch: AppDispatch) => {
             dispatch(setIsAuthAC(true))
         } else {
             dispatch(setIsAuthAC(false))
-            handleServerAppError(res, dispatch)
         }
     } catch (e) {
         handleServerNetworkError((e as AxiosError), dispatch)

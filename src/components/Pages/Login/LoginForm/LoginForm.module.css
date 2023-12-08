@@ -70,3 +70,10 @@
 .error_input {
     border-color: #f44c4c;
 }
+
+.rootError {
+    position: relative;
+    color: #f44c4c;
+    font-size: 14px;
+    text-align: center;
+}

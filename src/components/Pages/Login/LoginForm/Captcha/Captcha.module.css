@@ -1,0 +1,44 @@
+.container {
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.captchaInput {
+    margin-top: 10px;
+}
+
+.captchaInput input {
+    width: 225px;
+    padding: 7px;
+    background-color: white
+}
+
+.captchaInput input::placeholder {
+    font-size: 14px;
+}
+
+
+.captcha {
+    display: flex;
+    align-items: center;
+}
+
+.buttonIcon {
+    width: 35px;
+}
+
+.image {
+    flex-basis: 70%;
+    border-radius: 5px;
+}
+
+.captchaButton {
+    flex-basis: 30%;
+}
+
+.captchaButton:disabled {
+    color: #888888;
+    cursor: auto;
+}

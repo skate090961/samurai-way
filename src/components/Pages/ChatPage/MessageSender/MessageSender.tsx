@@ -15,10 +15,10 @@ const MessageSender = ({senderId}: { senderId: string | undefined }) => {
     } = useForm<{ message: string }>({
         mode: "onBlur"
     })
+
     const onSubmit: SubmitHandler<{ message: string }> = (data) =>
         dispatch(sendMessageTC(Number(senderId), data.message))
             .then(() => reset())
-
     return (
         <form className={s.sender__form} onSubmit={handleSubmit(onSubmit)}>
             <input
@@ -27,9 +27,7 @@ const MessageSender = ({senderId}: { senderId: string | undefined }) => {
                 className={s.sender__input}
                 placeholder={'Type your message here'}
                 disabled={formState.isSubmitting}
-                {...register("message", {
-                    validate: value => value.length >= 1
-                })}
+                {...register("message", {required: true})}
             />
             <button
                 type="submit"
