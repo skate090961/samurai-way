@@ -1,5 +1,6 @@
 import {axiosInstance} from "./axiosInstance";
 import {PhotosType} from "./users-api";
+import {AxiosResponse} from "axios";
 
 export const profileAPI = {
     async getUserProfile(userId: number): Promise<ProfileResponseType> {
@@ -12,6 +13,14 @@ export const profileAPI = {
     },
     async updateProfileStatus(status: string): Promise<ProfileStatusResponseType> {
         const response = await axiosInstance.put(`profile/status/`, {status})
+        return response.data
+    },
+    async updateProfilePhotos(file: File) {
+        const response: AxiosResponse<ResponseType> = await axiosInstance.put(
+            'profile/photo',
+            {image: file},
+            {headers: {'Content-Type': 'multipart/form-data'}}
+        )
         return response.data
     }
 }
@@ -41,4 +50,11 @@ export type ProfileResponseType = {
     userId: number
     photos: PhotosType
     fullName: string
+}
+
+type ResponseType = {
+    data: { photos: PhotosType }
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
 }

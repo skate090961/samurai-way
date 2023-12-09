@@ -1,10 +1,11 @@
 import {Dispatch} from "redux"
 import {profileAPI} from "../../api/profile-api"
-import {setStatusAC, setUserProfileAC, toggleProfileLoadingAC} from "./profile-reducer"
+import {setStatusAC, setUserProfileAC, toggleProfileLoadingAC, updatePhotosAC} from "./profile-reducer"
 import {handleServerNetworkError} from "../../utils/handle-errors/handleServerNetworkError"
 import {AxiosError} from "axios"
 import {setAppStatusAC} from "../app/app-reducer"
 import {handleServerAppError} from "../../utils/handle-errors/handleServerAppError"
+import {setAuthUserDataAC} from "../auth/auth-reducer";
 
 export const getUserProfileTC = (userId: number) => async (dispatch: Dispatch) => {
     dispatch(toggleProfileLoadingAC(true))
@@ -40,6 +41,21 @@ export const updateStatusTC = (status: string) => async (dispatch: Dispatch) => 
             dispatch(setAppStatusAC('succeeded'))
         } else {
             handleServerAppError(newStatus, dispatch)
+        }
+    } catch (e) {
+        handleServerNetworkError((e as AxiosError), dispatch)
+    }
+}
+
+export const updateProfilePhotoTC = (file: File) => async (dispatch: Dispatch) => {
+    dispatch(setAppStatusAC('loading'))
+    try {
+        const response = await profileAPI.updateProfilePhotos(file)
+        if (response.resultCode === 0) {
+            dispatch(updatePhotosAC(response.data.photos))
+            dispatch(setAppStatusAC('succeeded'))
+        } else {
+            handleServerAppError(response, dispatch)
         }
     } catch (e) {
         handleServerNetworkError((e as AxiosError), dispatch)

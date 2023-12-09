@@ -1,5 +1,6 @@
 import {AuthMeDataType} from "../../api/auth-api";
 import {PhotosType} from "../../api/users-api";
+import {updatePhotosAC} from "../profile/profile-reducer";
 
 const initialState: AuthType = {
     authUserData: {
@@ -21,6 +22,8 @@ export const authReducer = (state = initialState, action: ActionsTypes) => {
             return {...state, isAuth: action.isAuth}
         case "SET-CAPTCHA":
             return {...state, captcha: action.url}
+        case "UPDATE-PHOTOS":
+            return {...state, authUserData: {...state.authUserData, photos: action.photos}}
         default:
             return state
     }
@@ -30,6 +33,7 @@ export const authReducer = (state = initialState, action: ActionsTypes) => {
 type ActionsTypes = ReturnType<typeof setAuthUserDataAC>
     | ReturnType<typeof setIsAuthAC>
     | ReturnType<typeof setCaptchaAC>
+    | ReturnType<typeof updatePhotosAC>
 
 export type AuthMeDataExtendsType = AuthMeDataType & { photos: PhotosType | null }
 type AuthType = {

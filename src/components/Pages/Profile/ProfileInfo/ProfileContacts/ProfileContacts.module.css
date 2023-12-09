@@ -1,0 +1,15 @@
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-basis: 30%;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.header {
+    font-weight: bold;
+}
+

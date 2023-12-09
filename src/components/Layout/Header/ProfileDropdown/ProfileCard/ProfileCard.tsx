@@ -2,7 +2,7 @@ import React from 'react'
 import s from './ProfileCard.module.css'
 import profileDropdownStyle from '../ProfileDropdown.module.css'
 import defaultPhoto from "../../../../../assets/images/user-avatar-default.jpg";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {IoSettingsOutline} from "react-icons/io5";
 import {FaPowerOff} from "react-icons/fa6";
 import {AuthMeDataExtendsType} from "../../../../../store/auth/auth-reducer";
@@ -19,11 +19,18 @@ const ProfileCard: React.FC<ProfileCardPropsType> = ({
                                                          setIsShowCard
                                                      }) => {
     const dispatch = useAppDispatch()
-    const closeCardHandler = () => {
+    const logoutHandler = () => {
         dispatch(logoutTC())
         setIsShowCard(false)
     }
-
+    const viewProfileHandler = () => {
+        setIsShowCard(false)
+        return <Navigate to={'profile'}/>
+    }
+    const settingsHandler = () => {
+        setIsShowCard(false)
+        return <Navigate to={'settings'}/>
+    }
     return (
         <div className={s.profile_card}>
             <div className={s.header}>
@@ -35,15 +42,15 @@ const ProfileCard: React.FC<ProfileCardPropsType> = ({
                 </div>
             </div>
             <div className={s.view_profile_button}>
-                <Link to={'/profile'} onClick={closeCardHandler}>View profile</Link>
+                <Link to={'/profile'} onClick={viewProfileHandler}>View profile</Link>
             </div>
             <div className={s.button_container}>
                 <IoSettingsOutline size={25}/>
-                <Link to={'/settings'} onClick={closeCardHandler}>Settings</Link>
+                <Link to={'/settings'} onClick={settingsHandler}>Settings</Link>
             </div>
             <div className={s.button_container}>
                 <FaPowerOff size={20}/>
-                <Link to={'#'} onClick={closeCardHandler}>Sign Out</Link>
+                <Link to={'#'} onClick={logoutHandler}>Sign Out</Link>
             </div>
         </div>
     )

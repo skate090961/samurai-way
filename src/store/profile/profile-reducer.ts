@@ -1,5 +1,6 @@
 import {getRefactorDateAndTime} from "../../utils/date/getRefactorDateAndTime"
 import {ProfileResponseType} from "../../api/profile-api"
+import {PhotosType} from "../../api/users-api";
 
 const initialState: ProfilePageType = {
     posts: [
@@ -43,6 +44,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, status: action.status}
         case "SET-IS-FOLLOW":
             return {...state, isFollow: action.isFollowed}
+        case "UPDATE-PHOTOS":
+            return {...state, profile: state.profile && {...state.profile, photos: action.photos}}
         default:
             return state
     }
@@ -70,6 +73,7 @@ type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof toggleProfileLoadingAC>
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof setIsFollowAC>
+    | ReturnType<typeof updatePhotosAC>
 
 //action
 export const addPostAC = () =>
@@ -84,3 +88,5 @@ export const setStatusAC = (status: string) =>
     ({type: 'SET-PROFILE-STATUS', status} as const)
 export const setIsFollowAC = (isFollowed: boolean) =>
     ({type: 'SET-IS-FOLLOW', isFollowed} as const)
+export const updatePhotosAC = (photos: PhotosType) =>
+    ({type: 'UPDATE-PHOTOS', photos} as const)
