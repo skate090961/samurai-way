@@ -1,31 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
 body {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.4;
-    color: #222222;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #222222;
 
-    background-color: #f9fbfc;
+  background-color: #f9fbfc;
 }
 
 .app {
-    display: grid;
+  display: grid;
 
-    grid-template-areas:
+  grid-template-areas:
     "header header header"
     "sidebar main main";
 
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 9fr;
-    grid-gap: 15px;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 9fr;
+  grid-gap: 15px;
 
-    max-width: 1200px;
-    padding: 20px;
-    margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 .app__content {
-    grid-area: main;
+  grid-area: main;
 }

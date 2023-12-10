@@ -1,4 +1,4 @@
-import {RootStateType} from "../rootReducer";
+import { RootStateType } from "../rootReducer"
 
 export const selectPosts = (state: RootStateType) => state.profilePage.posts
 export const selectProfile = (state: RootStateType) => state.profilePage.profile

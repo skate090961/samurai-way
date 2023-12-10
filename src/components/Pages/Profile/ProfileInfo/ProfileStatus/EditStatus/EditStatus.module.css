@@ -1,27 +1,27 @@
 .status {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .status_input {
-    border-bottom: 2px solid #00a3ff;
+  border-bottom: 2px solid #00a3ff;
 }
 
 .status_button {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
 .status_button:hover {
-    background-color: #f0f7fc;
+  background-color: #f0f7fc;
 }
 
 .icon {
-    width: 25px;
+  width: 25px;
 }
 
 .tooltip {
-    font-size: 16px;
-    color: #888888;
+  font-size: 16px;
+  color: #888888;
 }

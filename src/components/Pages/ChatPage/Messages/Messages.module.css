@@ -1,78 +1,78 @@
 .messages {
-    grid-area: messages;
+  grid-area: messages;
 }
 
 .messages__header {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    background-color: #ffffff;
-    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 10px;
-    height: 100px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  height: 100px;
 }
 
 .messages_friendInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .messages__header__avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
 }
 
 .messages__header__name {
-    font-weight: bold;
-    font-size: 20px;
-    color: #222222;
+  font-weight: bold;
+  font-size: 20px;
+  color: #222222;
 }
 
 .messages__header__status {
-    font-size: 14px;
-    color: #888888;
+  font-size: 14px;
+  color: #888888;
 }
 
 .messages__main {
-    margin-top: 1px;
-    background-color: #ffffff;
-    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
+  margin-top: 1px;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
 }
 
 .messages__list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    height: 550px;
-    max-height: 100vh;
-    overflow: hidden;
-    overflow-y: scroll;
-    padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 550px;
+  max-height: 100vh;
+
+  overflow-y: scroll;
+  padding-right: 10px;
 }
 
 .messages__list::-webkit-scrollbar {
-    width: 2px;
+  width: 2px;
 }
 
 .messages__list::-webkit-scrollbar-track {
-    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
-    background-color: #f9f9fd;
-    border-radius: 10px;
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: #f9f9fd;
+  border-radius: 10px;
 }
 
 .messages__list::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: #0085ff;
+  border-radius: 10px;
+  background: #0085ff;
 }
 
 .loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
 }

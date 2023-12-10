@@ -1,42 +1,42 @@
 .user {
-    padding: 20px;
-    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.1);
-    border-radius: 10px;
-    flex-basis: 31%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  padding: 20px;
+  box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  flex-basis: 31%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .user__avatar {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .user__info {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .user__name {
-    font-size: 20px;
-    font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .user__location {
-    font-size: 16px;
-    font-weight: 600;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .user__status {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .user__button_container {
-    padding-top: 15px;
-    display: flex;
-    justify-content: center;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
 }

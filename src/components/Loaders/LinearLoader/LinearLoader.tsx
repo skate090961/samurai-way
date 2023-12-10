@@ -1,5 +1,5 @@
-import s from './LinearLoader.module.css'
+import s from "./LinearLoader.module.css"
 
 export const LinearLoader = () => {
-    return <div className={s.linearLoader}></div>
+  return <div className={s.linearLoader}></div>
 }

@@ -1,19 +1,19 @@
 .menuItem__link {
-    color: #222222;
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  color: #222222;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .menuItem__link:hover {
-    color: #0085ff;
+  color: #0085ff;
 }
 
 .menuItem__link_active {
-    color: #0085ff;
+  color: #0085ff;
 }
 
 .menuItem__icon {
-    width: 20px;
-    text-align: left;
+  width: 20px;
+  text-align: left;
 }

@@ -1,12 +1,11 @@
 .menu__list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .horizontal_line {
-    margin: 10px 0;
-    height: 1px;
-    background-color: #e6e6e6;
+  margin: 10px 0;
+  height: 1px;
+  background-color: #e6e6e6;
 }
-

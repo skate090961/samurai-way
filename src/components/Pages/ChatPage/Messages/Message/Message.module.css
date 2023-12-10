@@ -1,0 +1,75 @@
+.container {
+    display: flex;
+    gap: 10px;
+}
+
+.owner_container {
+    flex-direction: row-reverse;
+    align-items: flex-end;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.message {
+    overflow: hidden;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2);
+}
+
+.owner_message {
+    align-items: flex-end;
+    background-color: #00a3ff;
+    padding: 5px 10px 10px 25px;
+    border-radius: 10px 10px 0 10px;
+}
+
+.friend_message {
+    background-color: #f3f3f3;
+    padding: 5px 25px 10px 10px;
+    border-radius: 0 10px 10px 10px;
+}
+
+.message_text {
+    line-height: 1.4rem;
+    white-space: pre-wrap;
+}
+
+.owner_message_text {
+    color: white;
+}
+
+.message_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.owner_message_info {
+    color: #beebff;
+}
+
+.friend_message_info {
+    color: #888888;
+    flex-direction: row-reverse;
+}
+
+.removeButton {
+    width: 17px;
+    cursor: pointer;
+}
+
+.removeButton:disabled {
+    cursor: auto;
+    color: #b7b7b7;
+}
+
+.date {
+    font-size: 14px;
+}

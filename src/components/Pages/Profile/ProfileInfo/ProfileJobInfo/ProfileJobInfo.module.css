@@ -1,10 +1,10 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .empty {
-    color: #888888;
-    font-size: 14px;
+  color: #888888;
+  font-size: 14px;
 }

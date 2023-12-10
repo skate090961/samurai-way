@@ -1,4 +1,4 @@
-import {RootStateType} from "../rootReducer";
+import { RootStateType } from "../rootReducer"
 
 export const selectUsers = (state: RootStateType) => state.usersPage.users
 export const selectTotalUsersCount = (state: RootStateType) => state.usersPage.totalUsersCount

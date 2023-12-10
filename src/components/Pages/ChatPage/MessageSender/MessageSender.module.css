@@ -1,41 +1,41 @@
 .sender__form {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #f3f3f3;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
 }
 
 .sender__input {
-    flex-basis: 80%;
-    background-color: #f9fbfc;
-    border-radius: 10px;
-    padding: 10px 20px;
+  flex-basis: 80%;
+  background-color: #f9fbfc;
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
 .sender__input:focus {
-    border: 1px solid #0085ff;
+  border: 1px solid #0085ff;
 }
 
 .sender__input::placeholder {
-    color: rgba(136, 136, 136, 0.69);
-    font-size: 14px;
+  color: rgba(136, 136, 136, 0.69);
+  font-size: 14px;
 }
 
 .sender__button {
-    color: white;
-    background-color: #0085ff;
-    padding: 5px 20px;
-    border-radius: 10px;
+  color: white;
+  background-color: #0085ff;
+  padding: 5px 20px;
+  border-radius: 10px;
 }
 
 .sender__button:hover {
-    background-color: #036dcf;
+  background-color: #036dcf;
 }
 
 .sender__button:disabled {
-    background-color: #d8d8d8;
-    color: #888888;
-    cursor: auto;
+  background-color: #d8d8d8;
+  color: #888888;
+  cursor: auto;
 }
