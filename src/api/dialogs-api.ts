@@ -28,6 +28,10 @@ export const dialogsAPI = {
     const response: AxiosResponse<ResponseType> = await axiosInstance.delete(`dialogs/messages/${messageId}`)
     return response.data
   },
+  async getNewMessagesCount() {
+    const response: AxiosResponse<number> = await axiosInstance.get("dialogs/messages/new/count")
+    return response.data
+  },
 }
 
 export type DialogType = {

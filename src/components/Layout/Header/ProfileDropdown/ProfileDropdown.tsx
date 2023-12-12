@@ -3,8 +3,8 @@ import defaultPhoto from "../../../../assets/images/user-avatar-default.jpg"
 import s from "./ProfileDropdown.module.css"
 import { useSelector } from "react-redux"
 import { RootStateType } from "../../../../store/rootReducer"
-import { AuthMeDataExtendsType } from "../../../../store/auth/auth-reducer"
 import ProfileCard from "./ProfileCard/ProfileCard"
+import { AuthMeDataExtendsType } from "../../../../store/auth/auth-reducer"
 
 const ProfileDropdown = () => {
   const authUser = useSelector<RootStateType, AuthMeDataExtendsType>((state) => state.auth.authUserData)
