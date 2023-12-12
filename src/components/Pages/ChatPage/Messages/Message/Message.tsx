@@ -5,6 +5,7 @@ import defaultAvatar from "../../../../../assets/images/user-avatar-default.jpg"
 import { useAppDispatch } from "../../../../../store/store"
 import { removeMessageTC } from "../../../../../store/message/thunk-message"
 import { FaTrash } from "react-icons/fa"
+import { formatTime } from "../../../../../utils/date/getRefactorDateAndTime"
 
 type MessagePropsType = {
   message: MessageType
@@ -29,7 +30,7 @@ const Message: React.FC<MessagePropsType> = ({ message, photo, isOwner }) => {
           <button onClick={removeMessageHandler} className={s.removeButton} disabled={isDisabledRemoveButton}>
             <FaTrash />
           </button>
-          <span className={s.date}>{addedAt}</span>
+          <span className={s.date}>{formatTime(addedAt)}</span>
         </div>
       </div>
     </li>

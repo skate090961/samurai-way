@@ -1,4 +1,3 @@
-import { getRefactorDateAndTime } from "../../utils/date/getRefactorDateAndTime"
 import { ProfileResponseType } from "../../api/profile-api"
 import { PhotosType } from "../../api/users-api"
 
@@ -31,7 +30,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         id: String(new Date().getTime()),
         likesCount: 0,
         text: state.newPostText,
-        date: getRefactorDateAndTime(),
+        date: "today",
       }
       return { ...state, posts: [newPost, ...state.posts], newPostText: "" }
     case "UPDATE-NEW-POST-TEXT":

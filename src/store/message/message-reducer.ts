@@ -19,6 +19,7 @@ type ActionsTypes =
   | ReturnType<typeof removeMessageAC>
   | ReturnType<typeof setCurrentPageAC>
   | ReturnType<typeof setTotalItemsCountAC>
+  | ReturnType<typeof removeMessagesAC>
 
 const initialState: ChatPageType = {
   dialogs: [],
@@ -47,7 +48,7 @@ export const messageReducer = (state: ChatPageType = initialState, action: Actio
     case "MESSAGE/SET-MESSAGES":
       return {
         ...state,
-        messages: { ...state.messages, items: [...state.messages.items, ...action.messages] },
+        messages: { ...state.messages, items: [...action.messages, ...state.messages.items] },
       }
     case "MESSAGE/REMOVE-MESSAGE":
       return {
@@ -56,6 +57,11 @@ export const messageReducer = (state: ChatPageType = initialState, action: Actio
           ...state.messages,
           items: state.messages.items.filter((message) => message.id !== action.messageId),
         },
+      }
+    case "MESSAGE/REMOVE-MESSAGES":
+      return {
+        ...state,
+        messages: { ...state.messages, items: [] },
       }
     case "MESSAGE/SET-CURRENT-PAGE":
       return {
@@ -76,6 +82,7 @@ export const setDialogsAC = (dialogs: DialogType[]) => ({ type: "MESSAGE/SET-DIA
 export const setMessagesAC = (messages: MessageType[]) => ({ type: "MESSAGE/SET-MESSAGES", messages }) as const
 export const updateMessagesAC = (message: MessageType) => ({ type: "MESSAGE/UPDATE-MESSAGES", message }) as const
 export const removeMessageAC = (messageId: string) => ({ type: "MESSAGE/REMOVE-MESSAGE", messageId }) as const
+export const removeMessagesAC = () => ({ type: "MESSAGE/REMOVE-MESSAGES" }) as const
 export const setCurrentPageAC = (currentPage: number) => ({ type: "MESSAGE/SET-CURRENT-PAGE", currentPage }) as const
 export const setTotalItemsCountAC = (totalCount: number) =>
   ({ type: "MESSAGE/SET-TOTAL-ITEMS-COUNT", totalCount }) as const

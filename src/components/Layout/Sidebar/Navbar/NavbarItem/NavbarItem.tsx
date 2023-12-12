@@ -23,7 +23,7 @@ const NavbarItem: React.FC<MenuItemPropsType> = ({ pathTo, src, title, newMessag
       <NavLink className={setActive} to={pathTo}>
         {src}
         <span className={s.menuItem__text}>{title}</span>
-        {newMessagesCount && <NewMessagesCount newMessagesCount={newMessagesCount} />}
+        {!!newMessagesCount && <NewMessagesCount newMessagesCount={newMessagesCount} />}
       </NavLink>
     </li>
   )

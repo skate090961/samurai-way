@@ -1,7 +1,11 @@
 .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    background-color: #0085ff;
-    font-size: 12px;
-    padding: 3px;
+    width: 25px;
+    height: 25px;
+    background-color: #ff4949;
+    font-size: 14px;
     border-radius: 50%;
 }
