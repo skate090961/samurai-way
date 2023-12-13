@@ -40,10 +40,15 @@ const ProfileInfo = () => {
             </div>
           </div>
           <div className={s.profile_main}>
-            <ProfileContacts />
+            <ProfileContacts isOwner={false} />
             <div className={s.user_info}>
-              <div className={s.header_about}>About me:</div>
               <ProfileJobInfo />
+              {profile.aboutMe && (
+                <div>
+                  <div className={s.header_about}>About me:</div>
+                  {profile.aboutMe}
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -7,3 +7,22 @@
   text-decoration: none;
   color: #0085ff;
 }
+
+.item {
+  display: flex;
+  gap: 5px;
+}
+
+.icon {
+  width: 23px;
+  color: #0085ff;
+}
+
+.vk {
+  color: #00a3ff;
+  width: 23px;
+}
+
+.icon_container {
+  display: flex;
+}

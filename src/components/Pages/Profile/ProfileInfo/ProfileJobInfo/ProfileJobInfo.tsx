@@ -8,13 +8,18 @@ const ProfileJobInfo = () => {
   if (!profile) return <></>
   return (
     <div className={s.container}>
+      <div className={s.header_about}>Job Info:</div>
       <span>
-        Looking for a job:
-        <span className={s.empty}>{profile.lookingForAJob || " empty"}</span>
+        <b>Looking for a job:</b>
+        <span>{profile.lookingForAJob ? " yes" : " no"}</span>
       </span>
       <span>
-        Looking for a job description:
-        <span>{profile.lookingForAJobDescription || <span className={s.empty}> empty</span>}</span>
+        {profile.lookingForAJob && (
+          <div>
+            <b>My professional skills:</b>
+            <span> {profile.lookingForAJobDescription}</span>
+          </div>
+        )}
       </span>
     </div>
   )

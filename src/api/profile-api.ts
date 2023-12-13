@@ -23,16 +23,28 @@ export const profileAPI = {
     )
     return response.data
   },
+  async updateProfileSettings(model: ModelProfileType) {
+    const response: AxiosResponse<ResponseType> = await axiosInstance.put("profile", model)
+    return response.data
+  },
 }
 
 //types
+export type ModelProfileType = {
+  aboutMe: string
+  lookingForAJob: boolean
+  lookingForAJobDescription: string
+  fullName: string
+  contacts: ContactsType
+}
+
 type ProfileStatusResponseType = {
   resultCode: number
   messages: string[]
   data: string
 }
 
-type ContactsType = {
+export type ContactsType = {
   facebook: string
   website: string
   vk: string

@@ -20,7 +20,7 @@ export const loginTC = (login: LoginParamsType, setError: Function) => {
         dispatch(setCaptchaAC(""))
         dispatch(setAppStatusAC("succeeded"))
       } else {
-        if (response.resultCode === 10) {
+        if (response.resultCode === 10 || response.resultCode === 1) {
           await dispatch(getCaptchaTC())
           if (response.fieldsErrors.length) {
             setError("captcha", { message: response.messages[0] })

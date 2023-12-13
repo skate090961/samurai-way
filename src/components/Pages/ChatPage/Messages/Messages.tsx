@@ -11,7 +11,7 @@ import { withAuthRedirect } from "../../../../hoc/withAuthRedirect"
 import { useAppDispatch } from "../../../../store/store"
 import { getMessagesTC } from "../../../../store/message/thunk-message"
 import MessageSender from "../MessageSender/MessageSender"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import defaultAvatar from "../../../../assets/images/user-avatar-default.jpg"
 import { selectAuthUserData } from "../../../../store/auth/auth-selectors"
 import { removeMessagesAC, setCurrentPageAC } from "../../../../store/message/message-reducer"
@@ -49,13 +49,13 @@ const Messages = () => {
   return (
     <div className={s.messages}>
       <div className={s.messages__header}>
-        <a href={`/profile/${id}`} target={"_blank"} rel="noreferrer">
+        <Link to={`/profile/${id}`}>
           <img className={s.messages__header__avatar} src={friend?.photos.small || defaultAvatar} alt="friend_avatar" />
-        </a>
+        </Link>
         <div className={s.messages_friendInfo}>
-          <a href={`/profile/${id}`} target={"_blank"} rel="noreferrer" className={s.messages__header__name}>
+          <Link to={`/profile/${id}`} className={s.messages__header__name}>
             {friend && friend.userName}
-          </a>
+          </Link>
           <span className={s.messages__header__status}>offline</span>
         </div>
       </div>
