@@ -10,7 +10,6 @@ type MessageStateType = {
 export type ChatPageType = {
   dialogs: DialogType[]
   messages: MessageStateType
-  newMessageText: string
 }
 type ActionsTypes =
   | ReturnType<typeof updateMessagesAC>
@@ -29,7 +28,6 @@ const initialState: ChatPageType = {
     pageSize: 8,
     totalItemsCount: 0,
   },
-  newMessageText: "",
 }
 
 export const messageReducer = (state: ChatPageType = initialState, action: ActionsTypes): ChatPageType => {

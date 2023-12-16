@@ -1,4 +1,13 @@
-import { changeFollowingStatusAC, setUsersAC, usersReducer, UsersType } from "./users-reducer"
+import {
+  changeFollowingStatusAC,
+  setCurrentPageAC,
+  setTotalUsersCountAC,
+  setUsersAC,
+  toggleFollowingProgressAC,
+  toggleUserLoadingAC,
+  usersReducer,
+  UsersType,
+} from "./users-reducer"
 
 const startState: UsersType = {
   users: [
@@ -91,4 +100,17 @@ test("users list should be update", () => {
 
   expect(endState.users.length).toBe(3)
   expect(endState.users[0].id).toBe(4)
+})
+
+test("total users count should be set", () => {
+  const endState = usersReducer(startState, setTotalUsersCountAC(1000))
+  expect(endState.totalUsersCount).toBe(1000)
+})
+test("current page should be set", () => {
+  const endState = usersReducer(startState, setCurrentPageAC(4))
+  expect(endState.currentPage).toBe(4)
+})
+test("user loading status should be changed", () => {
+  const endState = usersReducer(startState, toggleUserLoadingAC(true))
+  expect(endState.isLoading).toBe(true)
 })

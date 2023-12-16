@@ -10,6 +10,3 @@ export const useAppDispatch = () => useDispatch<AppDispatch>()
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 export default store
-
-// @ts-ignore
-window.store = store

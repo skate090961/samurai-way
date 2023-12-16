@@ -1,7 +1,5 @@
 import AccountBoxIcon from "@mui/icons-material/AccountBox"
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble"
-import NewspaperIcon from "@mui/icons-material/Newspaper"
-import LibraryMusicIcon from "@mui/icons-material/LibraryMusic"
 import SettingsIcon from "@mui/icons-material/Settings"
 import PersonSearchIcon from "@mui/icons-material/PersonSearch"
 import React from "react"

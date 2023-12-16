@@ -10,13 +10,13 @@ export type AuthMeDataExtendsType = {
   newMessagesCount?: number
 }
 
-type AuthType = {
+export type AuthStateType = {
   authUserData: AuthMeDataExtendsType
   isAuth: boolean
   captcha: string
 }
 
-const initialState: AuthType = {
+const initialState: AuthStateType = {
   authUserData: {
     id: null,
     email: null,
@@ -31,7 +31,7 @@ const initialState: AuthType = {
 export const authReducer = (state = initialState, action: ActionsTypes) => {
   switch (action.type) {
     case "AUTH/SET-AUTH-USER-DATA":
-      return { ...state, authUserData: { ...action.authUser }, isAuth: true }
+      return { ...state, authUserData: { ...state.authUserData, ...action.authUser }, isAuth: true }
     case "AUTH/SET-IS-AUTH":
       return { ...state, isAuth: action.isAuth }
     case "AUTH/SET-CAPTCHA":
