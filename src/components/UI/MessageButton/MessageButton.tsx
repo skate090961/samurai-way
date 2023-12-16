@@ -1,11 +1,13 @@
 import React from "react"
-import s from "./MessageButton.module.css"
 import { Link } from "react-router-dom"
+import { Button } from "@mui/material"
 
 const MessageButton = ({ userId }: { userId: string }) => {
   return (
-    <Link to={`/dialogs/${userId}`} className={s.button_message}>
-      Message
+    <Link to={`/dialogs/${userId}`}>
+      <Button variant="contained" color="primary" size={"large"}>
+        Message
+      </Button>
     </Link>
   )
 }

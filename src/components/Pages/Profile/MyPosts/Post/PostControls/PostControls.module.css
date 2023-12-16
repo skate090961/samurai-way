@@ -1,0 +1,9 @@
+.controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button_icon {
+    transform: scale(1.2);
+}

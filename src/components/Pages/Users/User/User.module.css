@@ -9,11 +9,11 @@
   align-items: center;
 }
 
-.user__avatar {
+.photo {
   border-radius: 10px;
 }
 
-.user__info {
+.info {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -21,21 +21,16 @@
   gap: 5px;
 }
 
-.user__name {
+.name {
   font-size: 20px;
   font-weight: 600;
 }
 
-.user__location {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.user__status {
+.status {
   font-size: 16px;
 }
 
-.user__button_container {
+.button {
   padding-top: 15px;
   display: flex;
   justify-content: center;

@@ -1,37 +1,11 @@
-import React, { useEffect } from "react"
-import Layout from "../components/Layout/Layout"
-import Pages from "../components/Pages/Pages"
-import { useAppDispatch } from "../store/store"
-import { setAppInitializedTC } from "../store/app/app-thunk"
-import { useSelector } from "react-redux"
-import { selectIsInitialized } from "../store/app/app-selectors"
-import { GlobalError } from "./GlobalError/GlobalError"
-import TailSpinLoader from "../components/Loaders/TailSpinLoader/TailSpinLoader"
-import s from "./App.module.css"
+import React from "react"
+import { AppContent } from "./AppContent/AppContent"
+import { LoadingScreen } from "./LoadingScreen/LoadingScreen"
+import { useAppInitialization } from "./useAppInitialization"
 
 const App = () => {
-  const dispatch = useAppDispatch()
-  const isInitialized = useSelector(selectIsInitialized)
-  useEffect(() => {
-    dispatch(setAppInitializedTC())
-  }, [])
-
-  return (
-    <>
-      {isInitialized ? (
-        <>
-          <Layout>
-            <Pages />
-          </Layout>
-          <GlobalError />
-        </>
-      ) : (
-        <div className={s.loading}>
-          <TailSpinLoader />
-        </div>
-      )}
-    </>
-  )
+  const { isInitialized } = useAppInitialization()
+  return isInitialized ? <AppContent /> : <LoadingScreen />
 }
 
 export default App

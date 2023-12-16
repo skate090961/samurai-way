@@ -1,0 +1,28 @@
+.empty {
+  color: #888888;
+  font-size: 14px;
+}
+
+.contact_link {
+  text-decoration: none;
+  color: #1976d2;
+}
+
+.item {
+  display: flex;
+  gap: 5px;
+}
+
+.icon {
+  width: 23px;
+  color: #1976d2;
+}
+
+.vk {
+  color: #1976d2;
+  width: 23px;
+}
+
+.icon_container {
+  display: flex;
+}

@@ -63,7 +63,7 @@ export const updateProfilePhotoTC = (file: File) => async (dispatch: Dispatch) =
   }
 }
 
-type ProfileDataType = {
+export type UpdateProfileModelDataType = {
   aboutMe?: string
   lookingForAJob?: boolean
   lookingForAJobDescription?: string
@@ -72,7 +72,7 @@ type ProfileDataType = {
 }
 
 export const updateSettingsTC =
-  (updateModel: ProfileDataType) => async (dispatch: AppDispatch, getState: () => RootStateType) => {
+  (updateModel: UpdateProfileModelDataType) => async (dispatch: AppDispatch, getState: () => RootStateType) => {
     dispatch(setAppStatusAC("loading"))
     const { id } = getState().auth.authUserData
     if (!id) return console.warn("auth id not found in the state")

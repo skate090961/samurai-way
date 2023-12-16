@@ -1,5 +1,5 @@
 import React from "react"
-import s from "./FollowButton.module.css"
+import { Button } from "@mui/material"
 
 type FollowButtonType = {
   followed: boolean
@@ -9,11 +9,11 @@ type FollowButtonType = {
 
 const FollowButton: React.FC<FollowButtonType> = ({ followed, callback, disabled }) => {
   const buttonTitle = followed ? "Unfollow" : "Follow"
-  const buttonClasses = `${s.subscribe__button} ${followed ? s.unfollow_color : s.follow_color}`
+  const buttonClasses = followed ? `error` : `primary`
   return (
-    <button className={buttonClasses} onClick={callback} disabled={disabled}>
+    <Button color={buttonClasses} onClick={callback} disabled={disabled} variant="contained" size={"large"}>
       {buttonTitle}
-    </button>
+    </Button>
   )
 }
 

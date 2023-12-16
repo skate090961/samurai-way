@@ -3,6 +3,8 @@ import s from "./MessageSender.module.css"
 import { useAppDispatch } from "../../../../store/store"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { sendMessageTC } from "../../../../store/message/thunk-message"
+import { Button, TextField } from "@mui/material"
+import SendIcon from "@mui/icons-material/Send"
 
 const MessageSender = ({ senderId }: { senderId: string | undefined }) => {
   const dispatch = useAppDispatch()
@@ -20,7 +22,10 @@ const MessageSender = ({ senderId }: { senderId: string | undefined }) => {
     dispatch(sendMessageTC(Number(senderId), data.message)).then(() => reset())
   return (
     <form className={s.sender__form} onSubmit={handleSubmit(onSubmit)}>
-      <input
+      <TextField
+        size={"small"}
+        fullWidth
+        id="fullWidth"
         autoFocus
         type={"text"}
         className={s.sender__input}
@@ -28,9 +33,9 @@ const MessageSender = ({ senderId }: { senderId: string | undefined }) => {
         disabled={formState.isSubmitting}
         {...register("message", { required: true })}
       />
-      <button type="submit" className={s.sender__button} disabled={!isValid || formState.isSubmitting}>
-        Send
-      </button>
+      <Button type="submit" disabled={!isValid || formState.isSubmitting} variant="contained">
+        <SendIcon />
+      </Button>
     </form>
   )
 }

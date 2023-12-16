@@ -9,19 +9,3 @@
   justify-content: space-between;
 }
 
-.logo {
-  height: 50px;
-  width: 50px;
-}
-
-.login {
-  display: block;
-  color: inherit;
-  border: 1px solid black;
-  padding: 5px 10px;
-  border-radius: 3px;
-}
-
-.login:hover {
-  background-color: #ededed;
-}

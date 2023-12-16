@@ -1,6 +1,7 @@
 import React from "react"
 import s from "./Pagination.module.css"
 import pagesCreator from "../../utils/pagination/pagesCreator"
+import Pagination1 from "@mui/material/Pagination"
 
 type PaginationType = {
   totalPagesCount: number

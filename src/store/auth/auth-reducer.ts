@@ -30,15 +30,15 @@ const initialState: AuthType = {
 
 export const authReducer = (state = initialState, action: ActionsTypes) => {
   switch (action.type) {
-    case "SET-AUTH-USER-DATA":
+    case "AUTH/SET-AUTH-USER-DATA":
       return { ...state, authUserData: { ...action.authUser }, isAuth: true }
-    case "SET-IS-AUTH":
+    case "AUTH/SET-IS-AUTH":
       return { ...state, isAuth: action.isAuth }
-    case "SET-CAPTCHA":
+    case "AUTH/SET-CAPTCHA":
       return { ...state, captcha: action.url }
-    case "UPDATE-PHOTOS":
+    case "PROFILE/UPDATE-PHOTOS":
       return { ...state, authUserData: { ...state.authUserData, photos: action.photos } }
-    case "SET-NEW-MESSAGES-COUNT":
+    case "AUTH/SET-NEW-MESSAGES-COUNT":
       return {
         ...state,
         authUserData: { ...state.authUserData, newMessagesCount: action.count },
@@ -57,7 +57,7 @@ type ActionsTypes =
   | ReturnType<typeof setNewMessagesCountAC>
 
 //action
-export const setAuthUserDataAC = (authUser: AuthMeDataType) => ({ type: "SET-AUTH-USER-DATA", authUser }) as const
-export const setIsAuthAC = (isAuth: boolean) => ({ type: "SET-IS-AUTH", isAuth }) as const
-export const setCaptchaAC = (url: string) => ({ type: "SET-CAPTCHA", url }) as const
-export const setNewMessagesCountAC = (count: number) => ({ type: "SET-NEW-MESSAGES-COUNT", count }) as const
+export const setAuthUserDataAC = (authUser: AuthMeDataType) => ({ type: "AUTH/SET-AUTH-USER-DATA", authUser }) as const
+export const setIsAuthAC = (isAuth: boolean) => ({ type: "AUTH/SET-IS-AUTH", isAuth }) as const
+export const setCaptchaAC = (url: string) => ({ type: "AUTH/SET-CAPTCHA", url }) as const
+export const setNewMessagesCountAC = (count: number) => ({ type: "AUTH/SET-NEW-MESSAGES-COUNT", count }) as const

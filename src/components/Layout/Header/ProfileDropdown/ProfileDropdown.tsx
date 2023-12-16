@@ -1,28 +1,40 @@
 import React, { useState } from "react"
-import defaultPhoto from "../../../../assets/images/user-avatar-default.jpg"
-import s from "./ProfileDropdown.module.css"
 import { useSelector } from "react-redux"
-import { RootStateType } from "../../../../store/rootReducer"
-import ProfileCard from "./ProfileCard/ProfileCard"
-import { AuthMeDataExtendsType } from "../../../../store/auth/auth-reducer"
+import { ProfileCard } from "./ProfileCard/ProfileCard"
+import { selectAuthUserData } from "../../../../store/auth/auth-selectors"
+import Tooltip from "@mui/material/Tooltip"
+import IconButton from "@mui/material/IconButton"
+import Avatar from "@mui/material/Avatar"
+import defaultPhoto from "../../../../assets/images/user-avatar-default.jpg"
+import Box from "@mui/material/Box"
+import styles from "./ProfileDropdown.module.css"
 
-const ProfileDropdown = () => {
-  const authUser = useSelector<RootStateType, AuthMeDataExtendsType>((state) => state.auth.authUserData)
-  const [isShowCard, setIsShowCard] = useState<boolean>(false)
-  const openCardHandler = () => setIsShowCard(!isShowCard)
-
+export const ProfileDropdown = () => {
+  const authUser = useSelector(selectAuthUserData)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
   return (
-    <div className={s.profile_dropdown}>
-      <button onClick={openCardHandler}>
-        <img
-          src={authUser.photos?.small ? authUser.photos.small : defaultPhoto}
-          alt={"user_photo"}
-          className={s.photo}
-        />
-      </button>
-      {isShowCard && <ProfileCard profile={authUser} setIsShowCard={setIsShowCard} />}
-    </div>
+    <>
+      <Box className={styles.dropdown}>
+        <Tooltip title="Account menu">
+          <IconButton
+            onClick={handleClick}
+            size="small"
+            sx={{ ml: 2 }}
+            aria-controls={open ? "account-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+          >
+            <Avatar className={styles.avatar}>
+              <img src={authUser.photos?.small || defaultPhoto} alt="user_photo" />
+            </Avatar>
+          </IconButton>
+        </Tooltip>
+      </Box>
+      <ProfileCard authUser={authUser} setAnchorEl={setAnchorEl} anchorEl={anchorEl} open={open} />
+    </>
   )
 }
-
-export default ProfileDropdown

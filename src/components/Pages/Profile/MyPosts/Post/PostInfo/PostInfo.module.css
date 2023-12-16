@@ -1,0 +1,5 @@
+.info {
+    display: flex;
+    justify-content: space-between;
+    color: #888888;
+}

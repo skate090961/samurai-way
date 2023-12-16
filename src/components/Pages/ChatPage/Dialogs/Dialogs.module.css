@@ -1,4 +1,4 @@
-.dialogs {
+.container {
   grid-area: dialogs;
   background-color: #ffffff;
   box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
@@ -7,25 +7,26 @@
   min-height: 60vh;
 }
 
-.dialogs__header {
+.header {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   padding-bottom: 10px;
   height: 100px;
 }
 
-.dialogs__avatar {
+.photo {
   width: 60px;
   height: 60px;
   border-radius: 50px;
 }
 
-.dialogs__header__span {
+.title {
   font-weight: bold;
+  font-size: 22px;
 }
 
-.dialogs__list {
+.dialogs {
   border-top: 1px solid rgba(136, 136, 136, 0.43);
   display: flex;
   flex-direction: column;
@@ -34,21 +35,21 @@
   max-height: 100vh;
 }
 
-.dialogs__list:hover {
+.dialogs:hover {
   overflow-y: scroll;
 }
 
-.dialogs__list::-webkit-scrollbar {
+.dialogs::-webkit-scrollbar {
   width: 2px;
 }
 
-.dialogs__list::-webkit-scrollbar-track {
+.dialogs::-webkit-scrollbar-track {
   -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
   background-color: #f9f9fd;
   border-radius: 10px;
 }
 
-.dialogs__list::-webkit-scrollbar-thumb {
+.dialogs::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: #0085ff;
 }

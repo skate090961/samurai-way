@@ -1,35 +1,29 @@
-import React from "react"
-import s from "./Post.module.css"
+import React, { useState } from "react"
+import { PostControls } from "./PostControls/PostControls"
+import { UpdatePost } from "./UpdatePost/UpdatePost"
+import { PostInfo } from "./PostInfo/PostInfo"
+import styles from "./Post.module.css"
+import { PostType } from "../../../../../store/profile/profile-reducer"
 
 type PostPropsType = {
-  id: string
-  message: string
-  likesCount: number
-  date: string
+  post: PostType
+  photo: string
 }
 
-const Post: React.FC<PostPropsType> = ({ id, message, likesCount, date }) => {
+export const Post: React.FC<PostPropsType> = ({ post, photo }) => {
+  const { id, text, likesCount, date } = post
+  const [isEditMode, setIsEditMode] = useState<boolean>(false)
+  const showEditHandler = () => {
+    setIsEditMode(!isEditMode)
+  }
+
   return (
-    <div className={s.post}>
-      <div className={s.post__wrapper}>
-        <img
-          className={s.post__avatar}
-          src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Prescription02&hairColor=Platinum&facialHairType=BeardMajestic&facialHairColor=BrownDark&clotheType=BlazerSweater&eyeType=Happy&eyebrowType=Default&mouthType=Smile&skinColor=Tanned"
-        />
-        <div className={s.post__main}>
-          <div className={s.post__text}>{message}</div>
-          <div className={s.post__info}>
-            <span className={s.post__date}>{date}</span>
-            <span className={s.post__likes}>Likes: {likesCount}</span>
-          </div>
-        </div>
+    <div className={styles.post}>
+      <UpdatePost postId={id} postValue={text} photo={photo} isEditMode={isEditMode} showEdit={showEditHandler} />
+      <PostInfo date={date} likesCount={likesCount} />
+      <div className={styles.horizontal_line}>
+        <PostControls postId={id} showEditPost={showEditHandler} />
       </div>
-      <button className={s.post__button_like}>
-        <img className={s.post_icon} src="https://www.svgrepo.com/show/522408/heart.svg" alt="button_like" />
-        Like
-      </button>
     </div>
   )
 }
-
-export default Post

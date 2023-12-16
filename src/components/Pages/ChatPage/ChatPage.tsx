@@ -1,15 +1,15 @@
 import React from "react"
-import s from "./ChatPage.module.css"
-import Dialogs from "./Dialogs/Dialogs"
+import { useParams } from "react-router-dom"
+import { Dialogs } from "./Dialogs/Dialogs"
 import Messages from "./Messages/Messages"
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect"
-import { useParams } from "react-router-dom"
+import styles from "./ChatPage.module.css"
 
 const ChatPage = () => {
   const { id } = useParams()
 
   return (
-    <div className={s.chat__page}>
+    <div className={styles.chat}>
       <Dialogs />
       {id && <Messages />}
     </div>

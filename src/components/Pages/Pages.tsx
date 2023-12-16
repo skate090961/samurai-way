@@ -8,19 +8,9 @@ import Settings from "./Settings/Settings"
 import Users from "./Users/Users"
 import LoginPage from "./Login/Login"
 import NotFoundPage from "./NotFoundPage/NotFoundPage"
+import { PATH } from "../../constans/PATH"
 
 const Pages = () => {
-  const PATH = {
-    ROOT: "/",
-    PROFILE: "profile/:userId?",
-    DIALOGS: "dialogs/:id?",
-    NEWS: "news",
-    MUSIC: "music",
-    SETTINGS: "settings",
-    USERS: "users",
-    LOGIN: "login",
-  }
-
   return (
     <Routes>
       <Route path={PATH.ROOT} element={<Navigate to={PATH.PROFILE} />} />

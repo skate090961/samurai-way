@@ -1,0 +1,19 @@
+.layout {
+    display: grid;
+
+    grid-template-areas:
+    "header header header"
+    "sidebar main main";
+
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 9fr;
+    grid-gap: 15px;
+
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.content {
+    grid-area: main;
+}

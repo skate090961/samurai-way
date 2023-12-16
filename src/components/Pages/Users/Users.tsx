@@ -1,8 +1,7 @@
 import React, { useEffect } from "react"
-import s from "./Users.module.css"
+import { useSelector } from "react-redux"
 import { setCurrentPageAC, setUsersAC } from "../../../store/users/users-reducer"
 import User from "./User/User"
-import { useSelector } from "react-redux"
 import Pagination from "../../Pagination/Pagination"
 import { useAppDispatch } from "../../../store/store"
 import {
@@ -13,6 +12,7 @@ import {
 } from "../../../store/users/users-selectors"
 import { useFetchUsers } from "./useFetchUsers"
 import { UsersSkeleton } from "./UsersSkeleton"
+import { Grid } from "@mui/material"
 
 const Users = () => {
   const dispatch = useAppDispatch()
@@ -35,7 +35,11 @@ const Users = () => {
 
   return (
     <div>
-      <ul className={s.users}>{isShowSkeleton}</ul>
+      <ul>
+        <Grid container spacing={2}>
+          {isShowSkeleton}
+        </Grid>
+      </ul>
       {isShowPagination ? (
         <Pagination
           totalPagesCount={totalPagesCount}

@@ -1,0 +1,33 @@
+.container {
+    margin-top: 1px;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 550px;
+    max-height: 100vh;
+
+    overflow-y: scroll;
+    padding-right: 10px;
+}
+
+.list::-webkit-scrollbar {
+    width: 2px;
+}
+
+.list::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+}
+
+.list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #0085ff;
+}

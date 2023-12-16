@@ -1,8 +1,8 @@
 import React from "react"
-import s from "./Dialog.module.css"
 import { NavLink } from "react-router-dom"
 import { DialogType } from "../../../../../api/dialogs-api"
 import defaultAvatar from "../../../../../assets/images/user-avatar-default.jpg"
+import styles from "./Dialog.module.css"
 
 type DialogsItemPropsType = {
   dialog: DialogType
@@ -12,18 +12,18 @@ type IsActiveType = {
   [key: string]: boolean
 }
 
-const Dialog: React.FC<DialogsItemPropsType> = ({ dialog }) => {
+export const Dialog: React.FC<DialogsItemPropsType> = ({ dialog }) => {
   const { id, photos, userName, newMessagesCount } = dialog
-  const setActive = ({ isActive }: IsActiveType) =>
-    isActive ? `${s.dialog__link} ${s.dialog__link_active}` : s.dialog__link
+  const photo = photos.small || defaultAvatar
+  const setActive = ({ isActive }: IsActiveType) => (isActive ? `${styles.link} ${styles.link_active}` : styles.link)
 
   return (
-    <li className={s.dialog__item}>
+    <li className={styles.dialog}>
       <NavLink className={setActive} to={`/dialogs/${id}`}>
-        <img className={s.dialog__avatar} src={photos.small || defaultAvatar} alt="friend_avatar" />
-        <div className={s.dialog__container}>
-          <span className={s.dialog__name}>{userName}</span>
-          <span className={s.dialog__message}>
+        <img className={styles.photo} src={photo} alt="friend_avatar" />
+        <div className={styles.body}>
+          <span>{userName}</span>
+          <span className={styles.message}>
             {newMessagesCount === 1 && `new message`}
             {newMessagesCount > 1 && `${newMessagesCount} new messages`}
           </span>
@@ -32,5 +32,3 @@ const Dialog: React.FC<DialogsItemPropsType> = ({ dialog }) => {
     </li>
   )
 }
-
-export default Dialog

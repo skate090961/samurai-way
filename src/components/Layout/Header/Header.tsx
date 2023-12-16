@@ -1,33 +1,21 @@
 import React from "react"
-import s from "./Header.module.css"
 import { useSelector } from "react-redux"
-import { RootStateType } from "../../../store/rootReducer"
-import ProfileDropdown from "./ProfileDropdown/ProfileDropdown"
 import { Link } from "react-router-dom"
+import { ProfileDropdown } from "./ProfileDropdown/ProfileDropdown"
+import { selectIsAuth } from "../../../store/auth/auth-selectors"
+import { SignInButton } from "./SignInButton/SignInButton"
+import styles from "./Header.module.css"
+import { Logo } from "./Logo/Logo"
 
-const Header = () => {
-  const isAuth = useSelector<RootStateType, boolean>((state) => state.auth.isAuth)
+export const Header = () => {
+  const isAuth = useSelector(selectIsAuth)
 
   return (
-    <header className={s.header}>
+    <header className={styles.header}>
       <Link to={"/profile"}>
-        <img
-          src="https://cdn1.iconfinder.com/data/icons/programing-development-8/24/react_logo-512.png"
-          alt="logo"
-          className={s.logo}
-        />
+        <Logo />
       </Link>
-      <div className={s.login_container}>
-        {isAuth ? (
-          <ProfileDropdown />
-        ) : (
-          <Link to={"login"} className={s.login}>
-            Sign In
-          </Link>
-        )}
-      </div>
+      {isAuth ? <ProfileDropdown /> : <SignInButton />}
     </header>
   )
 }
-
-export default Header

@@ -4,8 +4,9 @@ import { MessageType } from "../../../../../api/dialogs-api"
 import defaultAvatar from "../../../../../assets/images/user-avatar-default.jpg"
 import { useAppDispatch } from "../../../../../store/store"
 import { removeMessageTC } from "../../../../../store/message/thunk-message"
-import { FaTrash } from "react-icons/fa"
 import { formatTime } from "../../../../../utils/date/getRefactorDateAndTime"
+import { IconButton } from "@mui/material"
+import DeleteIcon from "@mui/icons-material/Delete"
 
 type MessagePropsType = {
   message: MessageType
@@ -27,9 +28,14 @@ const Message: React.FC<MessagePropsType> = ({ message, photo, isOwner }) => {
       <div className={`${s.message} ${isOwner ? s.owner_message : s.friend_message}`}>
         <span className={`${s.message_text} ${isOwner && s.owner_message_text}`}>{body}</span>
         <div className={`${s.message_info} ${isOwner ? s.owner_message_info : s.friend_message_info}`}>
-          <button onClick={removeMessageHandler} className={s.removeButton} disabled={isDisabledRemoveButton}>
-            <FaTrash />
-          </button>
+          <IconButton
+            onClick={removeMessageHandler}
+            disabled={isDisabledRemoveButton}
+            size={"medium"}
+            sx={{ padding: 0, color: `${isOwner ? "#beebff" : "#888888"}` }}
+          >
+            <DeleteIcon />
+          </IconButton>
           <span className={s.date}>{formatTime(addedAt)}</span>
         </div>
       </div>

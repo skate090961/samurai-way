@@ -1,68 +1,11 @@
-.profile_card {
-  position: absolute;
-  padding: 15px 10px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  top: 55px;
-  right: 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  border-radius: 5px;
-  width: 225px;
-  height: 230px;
-}
-
-.header {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-}
-
-.user_name {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.status {
-  color: #888888;
-}
-
-.view_profile_button {
-  margin-top: 10px;
-  background-color: #f3f3f3;
-  padding: 8px 0;
-  width: 100%;
-  text-align: center;
-}
-
-.view_profile_button a {
-  color: #0085ff;
-}
-
-.button_container {
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  border-bottom: 1px solid #e6e6e6;
-  width: 100%;
-  cursor: pointer;
-}
-
-.button_container a {
+.link {
   color: inherit;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
-.button_container:hover a {
-  color: #0085ff;
-}
-
-.button_container:hover {
-  color: #0085ff;
+.photo {
+  border-radius: 50%;
+  width: 32px;
 }

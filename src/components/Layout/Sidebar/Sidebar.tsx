@@ -1,18 +1,13 @@
 import React from "react"
-import s from "./Sidebar.module.css"
-import Navbar from "./Navbar/Navbar"
-import Friends from "./Friends/Friends"
-import { useSelector } from "react-redux"
-import { selectIsAuth } from "../../../store/auth/auth-selectors"
+import styles from "./Sidebar.module.css"
+import { Navbar } from "./Navbar/Navbar"
 
-const Sidebar = () => {
-  const isAuth = useSelector(selectIsAuth)
+export const Sidebar = () => {
+  // const isAuth = useSelector(selectIsAuth)
   return (
-    <div className={s.sidebar}>
+    <div className={styles.sidebar}>
       <Navbar />
-      {isAuth && <Friends />}
+      {/*{isAuth && <Friends />}*/}
     </div>
   )
 }
-
-export default Sidebar

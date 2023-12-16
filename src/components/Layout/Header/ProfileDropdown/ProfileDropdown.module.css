@@ -1,9 +1,10 @@
-.profile_dropdown {
-  position: relative;
+.dropdown {
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 
-.photo {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
+.avatar {
+    width: 45px;
+    height: 45px;
 }
