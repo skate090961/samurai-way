@@ -1,6 +1,6 @@
 # REACT-SOCIAL-NETWORK
 
-**Demo: [https://skate090961.github.io/samurai-way/]()**
+**Demo: [https://skate090961.github.io/samurai-way/](https://skate090961.github.io/samurai-way/)**
 
 **Tech stack:**
 
