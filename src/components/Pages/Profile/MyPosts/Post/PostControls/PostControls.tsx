@@ -34,13 +34,15 @@ export const PostControls: React.FC<PostControlsType> = ({ postId, showEditPost 
   return (
     <div className={styles.controls}>
       <div>
-        <IconButton>
-          {!isLike ? (
-            <FavoriteBorderIcon className={styles.button_icon} color={"error"} onClick={incLikeHandler} />
-          ) : (
-            <FavoriteRoundedIcon className={styles.button_icon} color={"error"} onClick={decLikeHandler} />
-          )}
-        </IconButton>
+        {!isLike ? (
+          <IconButton onClick={incLikeHandler}>
+            <FavoriteBorderIcon className={styles.button_icon} color={"error"} />
+          </IconButton>
+        ) : (
+          <IconButton onClick={decLikeHandler}>
+            <FavoriteRoundedIcon className={styles.button_icon} color={"error"} />
+          </IconButton>
+        )}
         <IconButton>
           <BorderColorRoundedIcon className={styles.button_icon} color={"inherit"} onClick={showEditPost} />
         </IconButton>

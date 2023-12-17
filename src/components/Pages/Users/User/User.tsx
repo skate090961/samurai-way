@@ -28,7 +28,7 @@ const User: React.FC<UserPropsType> = ({ user }) => {
   const isFollowButtonDisabled = followingInProgress.some((id) => id === user.id)
   const isShowAvatar = large !== null ? large : userPhoto
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+    <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
       <li className={style.user}>
         <Link to={`/profile/${user.id}`}>
           <img src={isShowAvatar} alt="user-avatar" className={style.photo} />

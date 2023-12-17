@@ -7,7 +7,7 @@ import { ProfileResponseType } from "../../../../../api/profile-api"
 export const ProfileDetails = ({ profile }: { profile: ProfileResponseType }) => {
   return (
     <div className={styles.details}>
-      <Contacts isOwner={false} />
+      <Contacts />
       <div className={styles.info}>
         <ProfileJobInfo />
         {profile.aboutMe && (

@@ -3,7 +3,6 @@ import {
   setCurrentPageAC,
   setTotalUsersCountAC,
   setUsersAC,
-  toggleFollowingProgressAC,
   toggleUserLoadingAC,
   usersReducer,
   UsersType,

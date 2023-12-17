@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { Tab } from "@mui/material"
 import Tabs from "@mui/material/Tabs"
-import { tabsData } from "../../../../constans/tabsData"
+import { tabs } from "../../../../constans/tabs"
 
 export const Navbar = () => {
   // const { newMessagesCount } = useSelector(selectAuthUserData)
@@ -10,7 +10,7 @@ export const Navbar = () => {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
-  const tabsListRender = tabsData.map((tab, index) => (
+  const tabsListRender = tabs.map((tab, index) => (
     <Tab
       key={index}
       icon={tab.icon}

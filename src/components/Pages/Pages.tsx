@@ -8,19 +8,19 @@ import Settings from "./Settings/Settings"
 import Users from "./Users/Users"
 import LoginPage from "./Login/Login"
 import NotFoundPage from "./NotFoundPage/NotFoundPage"
-import { PATH } from "../../constans/PATH"
+import { RoutesEnum } from "../../constans/routes"
 
 const Pages = () => {
   return (
     <Routes>
-      <Route path={PATH.ROOT} element={<Navigate to={PATH.PROFILE} />} />
-      <Route path={PATH.PROFILE} element={<Profile />} />
-      <Route path={PATH.DIALOGS} element={<ChatPage />}></Route>
-      <Route path={PATH.NEWS} element={<News />}></Route>
-      <Route path={PATH.MUSIC} element={<Music />}></Route>
-      <Route path={PATH.SETTINGS} element={<Settings />}></Route>
-      <Route path={PATH.USERS} element={<Users />}></Route>
-      <Route path={PATH.LOGIN} element={<LoginPage />}></Route>
+      <Route path={RoutesEnum.Home} element={<Navigate to={RoutesEnum.Profile} />} />
+      <Route path={RoutesEnum.Profile} element={<Profile />} />
+      <Route path={RoutesEnum.Dialogs} element={<ChatPage />}></Route>
+      <Route path={RoutesEnum.News} element={<News />}></Route>
+      <Route path={RoutesEnum.Music} element={<Music />}></Route>
+      <Route path={RoutesEnum.Settings} element={<Settings />}></Route>
+      <Route path={RoutesEnum.Users} element={<Users />}></Route>
+      <Route path={RoutesEnum.Login} element={<LoginPage />}></Route>
       <Route path={"404"} element={<NotFoundPage />}></Route>
       <Route path={"*"} element={<Navigate to={"404"} />}></Route>
     </Routes>

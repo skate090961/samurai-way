@@ -1,11 +1,11 @@
 import React from "react"
 import { AppContent } from "./AppContent/AppContent"
-import { LoadingScreen } from "./LoadingScreen/LoadingScreen"
 import { useAppInitialization } from "./useAppInitialization"
+import { TailSpinLoader } from "../components/Loaders/TailSpinLoader/TailSpinLoader"
 
 const App = () => {
   const { isInitialized } = useAppInitialization()
-  return isInitialized ? <AppContent /> : <LoadingScreen />
+  return isInitialized ? <AppContent /> : <TailSpinLoader />
 }
 
 export default App

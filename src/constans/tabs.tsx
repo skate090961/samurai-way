@@ -4,7 +4,7 @@ import SettingsIcon from "@mui/icons-material/Settings"
 import PersonSearchIcon from "@mui/icons-material/PersonSearch"
 import React from "react"
 
-export const tabsData = [
+export const tabs = [
   {
     icon: <AccountBoxIcon />,
     label: "Profile",
