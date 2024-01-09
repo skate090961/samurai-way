@@ -4,15 +4,9 @@
   <img src="src/assets/images/readme/readme-logo.png" style="width: 100%" alt="logo" />
 </div>
 <div style="display: flex; justify-content: space-between">
-  <a href="https://drive.google.com/file/d/1JBxHeMqax7H6fP9zGsyJ-eb7buTk1bXq/view?usp=sharing" style="flex-basis: 32%">
     <img src="src/assets/images/readme/sn-1.jpg" />
-  </a>
-<a href="https://drive.google.com/file/d/1zw_7V8gh2-g6o98NDSeCBztoXGCbx3yo/view?usp=sharing" style="flex-basis: 33%">
-  <img src="src/assets/images/readme/sn-2.jpg" />
-</a>
-<a href="https://drive.google.com/file/d/1l8HrAuCEJAn2-LlUsqR1RGrHJXJ-FvTn/view?usp=sharing" style="flex-basis: 34%">
-  <img src="src/assets/images/readme/sn-3.jpg" />
-</a>
+    <img src="src/assets/images/readme/sn-2.jpg" />
+    <img src="src/assets/images/readme/sn-3.jpg" />
 </div>
 
 <hr>
